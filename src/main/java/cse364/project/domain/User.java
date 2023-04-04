@@ -1,9 +1,10 @@
 package cse364.project.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
 
-@Document
+import org.springframework.data.annotation.Id;
+
+@Entity
 public class User {
     @Id
     private Integer Id;
