@@ -1,12 +1,19 @@
 package cse364.milestone1application.domain;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Document
 @NoArgsConstructor
+@Data
 public class Rating {
+    @Id
+    private Long id;
     private Long userId;
     private Long movieId;
     private Double rating;

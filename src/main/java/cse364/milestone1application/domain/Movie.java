@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Document
 @AllArgsConstructor
@@ -16,7 +17,9 @@ public class Movie {
     private Long id;
 
     @Getter
+    @Setter
     private String title;
     @Getter
+    @Setter
     private String genre;
 }
