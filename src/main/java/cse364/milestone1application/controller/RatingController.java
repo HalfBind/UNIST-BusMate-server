@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cse364.milestone1application.domain.Movie;
 import cse364.milestone1application.domain.Rating;
+import cse364.milestone1application.repository.MovieRepository;
 import cse364.milestone1application.repository.RatingRepository;
 import cse364.milestone1application.util.Migrator;
 
@@ -21,17 +22,17 @@ import cse364.milestone1application.util.Migrator;
 @RequestMapping(value = "ratings/")
 public class RatingController {
     private final RatingRepository ratingRepository;
+    private final MovieRepository movieRepository;
 
-    public RatingController(RatingRepository ratingRepository) throws IOException {
+    public RatingController(RatingRepository ratingRepository,
+        MovieRepository movieRepository) throws IOException {
         this.ratingRepository = ratingRepository;
+        this.movieRepository = movieRepository;
         List<Rating> ratings = Migrator.getRatings();
 
         System.out.println("rating data migration progressing...");
         for (Rating rating : ratings) {
             this.ratingRepository.save(rating);
-            if (rating.getId() > Rating.idCounter) {
-                Rating.idCounter = rating.getId();
-            }
         }
         System.out.println("rating data migration complete.");
     }
@@ -43,7 +44,7 @@ public class RatingController {
 
     @GetMapping("/{standardRating}")
     public List<MovieDto> getByRatingScore(@PathVariable Long standardRating) throws IOException {
-        List<Movie> movies = Migrator.getMovies();
+        List<Movie> movies = movieRepository.findAll();
         List<Rating> ratings = ratingRepository.findAll();
         List<MovieDto> result = new ArrayList<>();
         for (Movie movie : movies) {
@@ -57,7 +58,6 @@ public class RatingController {
 
             if (averageRating >= standardRating) {
                 MovieDto movieDto = new MovieDto(movie.getTitle(), movie.getGenre());
-                System.out.println(result.size());
                 result.add(movieDto);
             }
         }
@@ -77,7 +77,7 @@ public class RatingController {
     @PostMapping("/{id}")
     public Rating postById(@PathVariable Long id, @RequestBody RatingDto ratingDto) {
         Rating rating = new Rating();
-        rating.setId(id);
+        // rating.setId(id);
         rating.setMovieId(ratingDto.getMovieId());
         rating.setUserId(ratingDto.getUserId());
         rating.setRating(ratingDto.getRating());
@@ -89,7 +89,7 @@ public class RatingController {
     public Rating replace(@PathVariable Long id, @RequestBody RatingDto ratingDto) {
         ratingRepository.deleteById(id);
         Rating rating = new Rating();
-        rating.setId(id);
+        // rating.setId(id);
         rating.setMovieId(ratingDto.getMovieId());
         rating.setUserId(ratingDto.getUserId());
         rating.setRating(ratingDto.getRating());

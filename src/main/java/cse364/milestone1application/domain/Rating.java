@@ -8,8 +8,8 @@ import lombok.Data;
 @Document
 @Data
 public class Rating {
-    @Id
-    private Long id;
+    // @Id
+    // private Long id;
     private Long userId;
     private Long movieId;
     private Double rating;
@@ -18,7 +18,7 @@ public class Rating {
     public static Long idCounter = 0L;
 
     public Rating(Long userId, Long movieId, Double ratingScore, String timestamp) {
-        this.id = ++idCounter;
+        // this.id = ++idCounter;
         this.userId = userId;
         this.movieId = movieId;
         this.rating = ratingScore;
@@ -26,6 +26,6 @@ public class Rating {
     }
 
     public Rating() {
-        this.id = ++idCounter;
+        // this.id = ++idCounter;
     }
 }
