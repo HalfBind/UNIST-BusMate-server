@@ -17,9 +17,9 @@ public class User {
     @Getter
     private String gender;
     @Getter
-    private Integer age;
+    private Long age;
     @Getter
-    private String occupation;
+    private Long occupation;
     @Getter
     private String zipCode;
 }

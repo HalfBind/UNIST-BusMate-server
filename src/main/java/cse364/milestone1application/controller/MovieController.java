@@ -1,5 +1,9 @@
 package cse364.milestone1application.controller;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.function.Function;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,12 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cse364.milestone1application.domain.Movie;
 import cse364.milestone1application.repository.MovieRepository;
-import lombok.RequiredArgsConstructor;
+import cse364.milestone1application.util.Migrator;
 
 @RestController
-@RequiredArgsConstructor
 public class MovieController {
     private final MovieRepository movieRepository;
+
+    public MovieController(MovieRepository movieRepository) throws IOException {
+        this.movieRepository = movieRepository;
+        List<Movie> movies = Migrator.getMovies();
+        System.out.println("movie data migration progressing...");
+        for (Movie movie : movies) {
+            movieRepository.save(movie);
+        }
+        System.out.println("movie data migration complete.");
+    }
 
     @GetMapping("movie/{id}")
     public Movie findOne(@PathVariable Long id) {

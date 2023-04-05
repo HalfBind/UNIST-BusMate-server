@@ -1,5 +1,7 @@
 package cse364.milestone1application.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Repository;
@@ -19,9 +21,15 @@ public class MovieRepository {
             .getSingleResult();
     }
 
+    public List<Movie> findAll() {
+        return em.createQuery("select m from Movie m", Movie.class)
+            .getResultList();
+    }
+
     @Transactional
-    public void save(Movie movie) {
+    public Movie save(Movie movie) {
         em.persist(movie);
+        return movie;
     }
 
     @Transactional
