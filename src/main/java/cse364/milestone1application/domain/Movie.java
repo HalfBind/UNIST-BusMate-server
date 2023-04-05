@@ -1,7 +1,6 @@
 package cse364.milestone1application.domain;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;

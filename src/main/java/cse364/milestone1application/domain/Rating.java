@@ -1,22 +1,12 @@
 package cse364.milestone1application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Document
 @NoArgsConstructor
 public class Rating {
-    @Id
-    @Getter
-    @GeneratedValue
-    private Long id;
-
     private Long userId;
     private Long movieId;
     private Double rating;
