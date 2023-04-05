@@ -2,11 +2,13 @@ package cse364.milestone1application.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Document
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
