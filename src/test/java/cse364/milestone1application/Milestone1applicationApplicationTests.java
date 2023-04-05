@@ -1,10 +1,10 @@
-package cse364.project;
+package cse364.milestone1application;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjectApplicationTests {
+class Milestone1applicationApplicationTests {
 
 	@Test
 	void contextLoads() {
