@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cse364.milestone1application.domain.Movie;
 import cse364.milestone1application.domain.User;
 import cse364.milestone1application.repository.UserRepository;
 import cse364.milestone1application.util.Migrator;
@@ -28,6 +29,9 @@ public class UserController {
 
         for (User user : users) {
             this.userRepository.save(user);
+            if (user.getId() > User.idCounter) {
+                User.idCounter = user.getId();
+            }
         }
         System.out.println("user data migration complete.");
     }

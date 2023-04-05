@@ -30,6 +30,9 @@ public class MovieController {
         System.out.println("movie data migration progressing...");
         for (Movie movie : movies) {
             movieRepository.save(movie);
+            if (movie.getId() > Movie.idCounter) {
+                Movie.idCounter = movie.getId();
+            }
         }
         System.out.println("movie data migration complete.");
     }

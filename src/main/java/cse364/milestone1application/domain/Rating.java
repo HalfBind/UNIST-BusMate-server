@@ -4,12 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Document
-@NoArgsConstructor
 @Data
 public class Rating {
     @Id
@@ -19,10 +15,17 @@ public class Rating {
     private Double rating;
     private String timestamp;
 
+    public static Long idCounter = 0L;
+
     public Rating(Long userId, Long movieId, Double ratingScore, String timestamp) {
+        this.id = ++idCounter;
         this.userId = userId;
         this.movieId = movieId;
         this.rating = ratingScore;
         this.timestamp = timestamp;
+    }
+
+    public Rating() {
+        this.id = ++idCounter;
     }
 }

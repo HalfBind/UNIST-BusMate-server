@@ -1,8 +1,8 @@
 package cse364.milestone1application.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cse364.milestone1application.domain.Movie;
 import cse364.milestone1application.domain.Rating;
 import cse364.milestone1application.repository.RatingRepository;
 import cse364.milestone1application.util.Migrator;
@@ -28,6 +29,9 @@ public class RatingController {
         System.out.println("rating data migration progressing...");
         for (Rating rating : ratings) {
             this.ratingRepository.save(rating);
+            if (rating.getId() > Rating.idCounter) {
+                Rating.idCounter = rating.getId();
+            }
         }
         System.out.println("rating data migration complete.");
     }
@@ -37,9 +41,27 @@ public class RatingController {
         return ratingRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Rating> getById(@PathVariable Long id) {
-        return ratingRepository.findById(id);
+    @GetMapping("/{standardRating}")
+    public List<MovieDto> getByRatingScore(@PathVariable Long standardRating) throws IOException {
+        List<Movie> movies = Migrator.getMovies();
+        List<Rating> ratings = ratingRepository.findAll();
+        List<MovieDto> result = new ArrayList<>();
+        for (Movie movie : movies) {
+            Long movieId = movie.getId();
+            Double averageRating = ratings
+                .stream()
+                .filter(rating -> rating.getMovieId().equals(movieId))
+                .mapToDouble(Rating::getRating)
+                .average()
+                .orElse(Double.NaN);
+
+            if (averageRating >= standardRating) {
+                MovieDto movieDto = new MovieDto(movie.getTitle(), movie.getGenre());
+                System.out.println(result.size());
+                result.add(movieDto);
+            }
+        }
+        return result;
     }
 
     @PostMapping()

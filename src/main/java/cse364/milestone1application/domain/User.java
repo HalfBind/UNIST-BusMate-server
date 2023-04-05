@@ -5,11 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Document
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class User {
     @Getter
@@ -23,4 +21,10 @@ public class User {
     private Long occupation;
     @Getter
     private String zipCode;
+
+    public static Long idCounter = 0L;
+
+    public User() {
+        this.id = ++idCounter;
+    }
 }
