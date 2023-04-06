@@ -12,11 +12,11 @@ To run this project on your local machine, follow these steps:
 
 Clone the repository:
 ```bash
-git clone https://github.com/[username]/[repository-name].git
+git clone https://github.com/HalfBind/Milestone-1-Application.git
 ```
 Navigate to the project directory:
 ```bash
-cd [repository-name]
+cd Milestone-1-Application
 ```
 Build the project:
 ```bash
