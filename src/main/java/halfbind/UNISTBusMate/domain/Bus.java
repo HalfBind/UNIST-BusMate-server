@@ -7,7 +7,10 @@ import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Data;
+
 @Document(collection = "buses")
+@Data
 public class Bus {
     @Id
     @GeneratedValue
