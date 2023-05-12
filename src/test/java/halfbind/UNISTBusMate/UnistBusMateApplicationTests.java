@@ -1,10 +1,10 @@
-package cse364.milestone1application;
+package halfbind.UNISTBusMate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Milestone1applicationApplicationTests {
+class UnistBusMateApplicationTests {
 
 	@Test
 	void contextLoads() {

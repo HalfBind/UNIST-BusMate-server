@@ -1,13 +1,13 @@
-package cse364.milestone1application;
+package halfbind.UNISTBusMate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Milestone1applicationApplication {
+public class UnistBusMateApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Milestone1applicationApplication.class, args);
+		SpringApplication.run(UnistBusMateApplication.class, args);
 	}
 
 }
