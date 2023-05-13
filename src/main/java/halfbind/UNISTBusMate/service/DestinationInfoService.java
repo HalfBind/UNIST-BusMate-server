@@ -36,4 +36,23 @@ public class DestinationInfoService {
                 destinationInfo -> TimeManager.isAfter(destinationInfo.getBus().getDepartureTime(), departureTime))
             .toList();
     }
+
+    public List<DestinationInfo> findByDestinationNameAndArrivalTime(String destinationName, String arrivalTime) {
+        List<DestinationInfo> destinationInfos = findByDestinationName(destinationName);
+        return destinationInfos
+            .stream()
+            .filter(
+                destinationInfo -> TimeManager.isBefore(destinationInfo.getArrivalTime(), arrivalTime))
+            .toList();
+    }
+
+    public List<DestinationInfo> findByDestinationNameAndArrivalTimeWithDepartureTime(String destinationName,
+        String arrivalTime, String departureTime) {
+        List<DestinationInfo> destinationInfos = findByDestinationNameAndArrivalTime(destinationName, arrivalTime);
+        return destinationInfos
+            .stream()
+            .filter(
+                destinationInfo -> TimeManager.isAfter(destinationInfo.getBus().getDepartureTime(), departureTime))
+            .toList();
+    }
 }
