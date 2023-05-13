@@ -20,11 +20,15 @@ public class DestinationInfoController {
     private DestinationInfoService destinationInfoService;
 
     @GetMapping("/{destinationName}")
-    public ResponseEntity<List<DestinationInfo>> getDestinationInfoByDestinationName(
+    public ResponseEntity<List<DestinationInfoDto>> getDestinationInfoByDestinationName(
         @PathVariable String destinationName) {
         List<DestinationInfo> destinationInfos = destinationInfoService.findByDestinationName(destinationName);
-        if (destinationInfos != null) {
-            return ResponseEntity.ok(destinationInfos);
+        List<DestinationInfoDto> result = destinationInfos
+            .stream()
+            .map(DestinationInfoDto::new)
+            .toList();
+        if (result != null) {
+            return ResponseEntity.ok(result);
         }
         return ResponseEntity.notFound().build();
     }
