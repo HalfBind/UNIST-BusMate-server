@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import halfbind.UNISTBusMate.domain.Bus;
@@ -41,13 +42,19 @@ public class BusController {
     }
 
     @GetMapping("/{routeNumber}/{routeDirection}")
-    public ResponseEntity<List<Bus>> getBusesByRouteNumberAndRouteDirection(@PathVariable String routeNumber,
-        @PathVariable String routeDirection) {
-        List<Bus> buses = busService.getBusesByRouteNumberAndRouteDirection(routeNumber, routeDirection);
+    public ResponseEntity<List<Bus>> getBusesByRoute(@PathVariable String routeNumber,
+        @PathVariable String routeDirection, @RequestParam(required = false) String departureTime) {
+        List<Bus> buses;
+
+        if (departureTime != null) {
+            buses = busService.getBusesByRouteAndDepartureTime(routeNumber, routeDirection, departureTime);
+        } else {
+            buses = busService.getBusesByRoute(routeNumber, routeDirection);
+        }
+
         if (buses != null) {
             return ResponseEntity.ok(buses);
-        } else {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
 }
