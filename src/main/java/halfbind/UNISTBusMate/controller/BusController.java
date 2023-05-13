@@ -32,7 +32,7 @@ public class BusController {
     }
 
     @GetMapping("/{routeNumber}")
-    public ResponseEntity<List<Bus>> getBusesByRouteNumber(@PathVariable String routeNumber,
+    public ResponseEntity<List<BusDto>> getBusesByRouteNumber(@PathVariable String routeNumber,
         @RequestParam(required = false) String departureTime) {
         List<Bus> buses;
 
@@ -42,14 +42,19 @@ public class BusController {
             buses = busService.findByRouteNumber(routeNumber);
         }
 
-        if (buses != null) {
-            return ResponseEntity.ok(buses);
+        List<BusDto> result = buses
+            .stream()
+            .map(BusDto::new)
+            .toList();
+
+        if (result != null) {
+            return ResponseEntity.ok(result);
         }
         return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{routeNumber}/{routeDirection}")
-    public ResponseEntity<List<Bus>> getBusesByRouteNumberAndDirection(@PathVariable String routeNumber,
+    public ResponseEntity<List<BusDto>> getBusesByRouteNumberAndDirection(@PathVariable String routeNumber,
         @PathVariable String routeDirection, @RequestParam(required = false) String departureTime) {
         List<Bus> buses;
 
@@ -60,8 +65,13 @@ public class BusController {
             buses = busService.findByRouteNumberAndDirection(routeNumber, routeDirection);
         }
 
-        if (buses != null) {
-            return ResponseEntity.ok(buses);
+        List<BusDto> result = buses
+            .stream()
+            .map(BusDto::new)
+            .toList();
+
+        if (result != null) {
+            return ResponseEntity.ok(result);
         }
         return ResponseEntity.notFound().build();
     }

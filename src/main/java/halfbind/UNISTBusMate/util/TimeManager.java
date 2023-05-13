@@ -60,4 +60,8 @@ public class TimeManager {
 
         return HOUR_IN_MINUTES * targetHour + targetMinute >= HOUR_IN_MINUTES * standardHour + standardMinute;
     }
+
+    public static Boolean isBefore(String targetTime, String standardTime) {
+        return isAfter(standardTime, targetTime);
+    }
 }
