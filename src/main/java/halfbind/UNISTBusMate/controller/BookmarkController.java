@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,14 +43,15 @@ public class BookmarkController {
         return ResponseEntity.created(URI.create("/bookmarks/" + id)).body(bookmarkResponseDto);
     }
 
-    // @DeleteMapping("/{id}")
-    // public ResponseEntity<?> deleteBookmark(@PathVariable Long bookmarkId) {
-    //     Optional<Bookmark> bookmarkOptional = .findById(bookmarkId);
-    //     if (bookmarkOptional.isEmpty()) {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    //     Bookmark bookmark = bookmarkOptional.get();
-    //     bookmarkService.delete(bookmark);
-    //     return ResponseEntity.noContent().build();
-    // }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBookmark(@PathVariable Long bookmarkId) {
+        Bookmark bookmark;
+        try {
+            bookmark = bookmarkService.findById(bookmarkId);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+        bookmarkService.delete(bookmark);
+        return ResponseEntity.noContent().build();
+    }
 }

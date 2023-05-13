@@ -37,4 +37,12 @@ public class BookmarkService {
         bookmarkRepository.save(bookmark);
         return bookmark;
     }
+
+    public Bookmark findById(Long id) {
+        return bookmarkRepository.findById(id).orElseThrow(() -> new RuntimeException("Bookmark is not exist"));
+    }
+
+    public void delete(Bookmark bookmark) {
+        bookmarkRepository.delete(bookmark);
+    }
 }
