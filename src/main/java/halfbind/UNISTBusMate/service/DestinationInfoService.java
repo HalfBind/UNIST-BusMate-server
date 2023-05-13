@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import halfbind.UNISTBusMate.domain.Destination;
 import halfbind.UNISTBusMate.domain.DestinationInfo;
 import halfbind.UNISTBusMate.repository.DestinationInfoRepository;
+import halfbind.UNISTBusMate.util.TimeManager;
 
 @Service
 public class DestinationInfoService {
@@ -17,7 +18,6 @@ public class DestinationInfoService {
 
     private Long idCounter = 0L;
 
-
     public DestinationInfo createDestinationInfo(DestinationInfo destinationInfo) {
         destinationInfo.setId(idCounter++);
         return destinationInfoRepository.save(destinationInfo);
@@ -26,5 +26,14 @@ public class DestinationInfoService {
     public List<DestinationInfo> findByDestinationName(String destinationName) {
         Destination destination = Destination.get(destinationName);
         return destinationInfoRepository.findByDestination(destination);
+    }
+
+    public List<DestinationInfo> findByDestinationNameWithDepartureTime(String destinationName, String departureTime) {
+        List<DestinationInfo> destinationInfos = findByDestinationName(destinationName);
+        return destinationInfos
+            .stream()
+            .filter(
+                destinationInfo -> TimeManager.isAfter(destinationInfo.getBus().getDepartureTime(), departureTime))
+            .toList();
     }
 }
