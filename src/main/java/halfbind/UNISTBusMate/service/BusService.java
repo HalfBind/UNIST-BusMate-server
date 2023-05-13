@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import halfbind.UNISTBusMate.domain.Bus;
 import halfbind.UNISTBusMate.repository.BusRepository;
+import halfbind.UNISTBusMate.util.TimeManager;
 
 @Service
 public class BusService {
@@ -28,7 +29,15 @@ public class BusService {
         return busRepository.save(bus);
     }
 
-    public List<Bus> getBusesByRouteNumberAndRouteDirection(String routeNumber, String routeDirection) {
+    public List<Bus> getBusesByRoute(String routeNumber, String routeDirection) {
         return busRepository.findByRouteNumberAndRouteDirection(routeNumber, routeDirection);
+    }
+
+    public List<Bus> getBusesByRouteAndDepartureTime(String routeNumber, String routeDirection, String departureTime) {
+        List<Bus> buses = getBusesByRoute(routeNumber, routeDirection);
+        return buses
+            .stream()
+            .filter(bus -> TimeManager.isAfter(bus.getDepartureTime(), departureTime))
+            .toList();
     }
 }
