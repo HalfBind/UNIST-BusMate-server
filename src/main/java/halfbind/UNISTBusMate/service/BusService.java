@@ -28,7 +28,7 @@ public class BusService {
         return busRepository.save(bus);
     }
 
-    public List<Bus> getBusesByRouteId(String routeNumber, String routeDirection) {
+    public List<Bus> getBusesByRouteNumberAndRouteDirection(String routeNumber, String routeDirection) {
         return busRepository.findByRouteNumberAndRouteDirection(routeNumber, routeDirection);
     }
 }

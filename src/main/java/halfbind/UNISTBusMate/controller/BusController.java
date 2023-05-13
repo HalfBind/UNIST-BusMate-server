@@ -41,8 +41,9 @@ public class BusController {
     }
 
     @GetMapping("/{routeNumber}/{routeDirection}")
-    public ResponseEntity<List<Bus>> getBusesByRoute(@PathVariable Long routeNumber, @PathVariable String routeDirection) {
-        List<Bus> buses = busService.getBusesByRouteId(routeNumber, routeDirection);
+    public ResponseEntity<List<Bus>> getBusesByRouteNumberAndRouteDirection(@PathVariable String routeNumber,
+        @PathVariable String routeDirection) {
+        List<Bus> buses = busService.getBusesByRouteNumberAndRouteDirection(routeNumber, routeDirection);
         if (buses != null) {
             return ResponseEntity.ok(buses);
         } else {

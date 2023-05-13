@@ -7,9 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import halfbind.UNISTBusMate.util.TimeManager;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Document(collection = "destinationInfos")
 @Data
+@NoArgsConstructor
 public class DestinationInfo {
 
     public DestinationInfo(Destination destination, String departureTime) {
