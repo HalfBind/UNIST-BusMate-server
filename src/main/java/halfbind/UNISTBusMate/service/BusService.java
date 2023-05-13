@@ -14,14 +14,18 @@ public class BusService {
 
     @Autowired
     private BusRepository busRepository;
-    private Long busIdCounter = 0L;
+
+    @Autowired
+    private DestinationInfoService destinationInfoService;
+    private Long idCounter = 0L;
 
     public Bus getBusById(Long id) {
         return busRepository.findById(id).orElse(null);
     }
 
     public Bus createBus(Bus bus) {
-        bus.setId(busIdCounter++);
+        bus.setId(idCounter++);
+        bus.getDestinationInfos().forEach(destinationInfoService::createDestinationInfo);
         return busRepository.save(bus);
     }
 

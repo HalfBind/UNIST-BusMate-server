@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -19,5 +20,6 @@ public class Bus {
     private String routeNumber;
     private String routeDirection;
     private String departureTime;
+    @DBRef
     private List<DestinationInfo> destinationInfos;
 }
