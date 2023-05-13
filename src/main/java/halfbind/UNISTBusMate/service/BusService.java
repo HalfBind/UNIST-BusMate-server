@@ -22,19 +22,15 @@ public class BusService {
 
     public Bus createBus(Bus bus) {
         bus.setId(busIdCounter++);
-        System.out.println(bus.getId());
-        System.out.println(bus.getDepartureTime());
-        System.out.println(bus.getRouteNumber());
-        System.out.println(bus.getRouteDirection());
         return busRepository.save(bus);
     }
 
-    public List<Bus> getBusesByRoute(String routeNumber, String routeDirection) {
+    public List<Bus> findByRouteNumberAndDirection(String routeNumber, String routeDirection) {
         return busRepository.findByRouteNumberAndRouteDirection(routeNumber, routeDirection);
     }
 
-    public List<Bus> getBusesByRouteAndDepartureTime(String routeNumber, String routeDirection, String departureTime) {
-        List<Bus> buses = getBusesByRoute(routeNumber, routeDirection);
+    public List<Bus> findByRouteNumberAndDirectionWithDepartureTime(String routeNumber, String routeDirection, String departureTime) {
+        List<Bus> buses = findByRouteNumberAndDirection(routeNumber, routeDirection);
         return buses
             .stream()
             .filter(bus -> TimeManager.isAfter(bus.getDepartureTime(), departureTime))

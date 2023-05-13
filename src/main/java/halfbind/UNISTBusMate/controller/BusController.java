@@ -42,14 +42,14 @@ public class BusController {
     }
 
     @GetMapping("/{routeNumber}/{routeDirection}")
-    public ResponseEntity<List<Bus>> getBusesByRoute(@PathVariable String routeNumber,
+    public ResponseEntity<List<Bus>> getBusesByRouteNumberAndDirection(@PathVariable String routeNumber,
         @PathVariable String routeDirection, @RequestParam(required = false) String departureTime) {
         List<Bus> buses;
 
         if (departureTime != null) {
-            buses = busService.getBusesByRouteAndDepartureTime(routeNumber, routeDirection, departureTime);
+            buses = busService.findByRouteNumberAndDirectionWithDepartureTime(routeNumber, routeDirection, departureTime);
         } else {
-            buses = busService.getBusesByRoute(routeNumber, routeDirection);
+            buses = busService.findByRouteNumberAndDirection(routeNumber, routeDirection);
         }
 
         if (buses != null) {
