@@ -26,6 +26,9 @@ public class TimeManager {
         }
         result += targetHour.toString();
         result += ":";
+        if (targetMinute < 10) {
+            result += "0";
+        }
         result += targetMinute.toString();
         return result;
     }
