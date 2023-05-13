@@ -1,12 +1,14 @@
 package halfbind.UNISTBusMate.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import halfbind.UNISTBusMate.controller.BookmarkRequestDto;
 import halfbind.UNISTBusMate.domain.Bookmark;
+import halfbind.UNISTBusMate.domain.Bus;
 import halfbind.UNISTBusMate.repository.BookmarkRepository;
 import halfbind.UNISTBusMate.repository.DestinationInfoRepository;
 
@@ -29,7 +31,8 @@ public class BookmarkService {
         Bookmark bookmark = new Bookmark();
         bookmark.setId(idCounter++);
         bookmark.setUserName(bookmarkRequestDto.getUserName());
-        bookmark.setBus(busService.findById(bookmarkRequestDto.getBusId()));
+        Bus bus = busService.findById(bookmarkRequestDto.getBusId());
+        bookmark.setBus(bus);
         bookmark.setDays(bookmarkRequestDto.getDays());
         bookmarkRepository.save(bookmark);
         return bookmark;

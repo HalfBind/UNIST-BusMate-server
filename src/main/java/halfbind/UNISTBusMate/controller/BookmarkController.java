@@ -1,11 +1,14 @@
 package halfbind.UNISTBusMate.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,11 +34,14 @@ public class BookmarkController {
         return ResponseEntity.notFound().build();
     }
 
-    // @PostMapping("")
-    // public ResponseEntity<BookmarkDto> createBookmark(@RequestBody BookmarkDto bookmarkDto) {
-    //     bookmarkService.createBookmark(bookmarkDto);
-    // }
-    //
+    @PostMapping("")
+    public ResponseEntity<BookmarkResponseDto> createBookmark(@RequestBody BookmarkRequestDto bookmarkRequestDto) {
+        Bookmark bookmark = bookmarkService.createBookmark(bookmarkRequestDto);
+        Long id = bookmark.getId();
+        BookmarkResponseDto bookmarkResponseDto = new BookmarkResponseDto(bookmark);
+        return ResponseEntity.created(URI.create("/bookmarks/" + id)).body(bookmarkResponseDto);
+    }
+
     // @DeleteMapping("/{id}")
     // public ResponseEntity<?> deleteBookmark(@PathVariable Long bookmarkId) {
     //     Optional<Bookmark> bookmarkOptional = .findById(bookmarkId);
