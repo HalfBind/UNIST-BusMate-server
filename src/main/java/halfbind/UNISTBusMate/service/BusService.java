@@ -1,6 +1,7 @@
 package halfbind.UNISTBusMate.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,9 @@ public class BusService {
             .stream()
             .filter(bus -> TimeManager.isAfter(bus.getDepartureTime(), departureTime))
             .toList();
+    }
+
+    public Bus findById(Long id) {
+        return busRepository.findById(id).orElseThrow(() -> new RuntimeException("Bus is not exist"));
     }
 }
