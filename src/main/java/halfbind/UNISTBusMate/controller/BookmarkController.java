@@ -37,17 +37,22 @@ public class BookmarkController {
 
     @PostMapping("")
     public ResponseEntity<BookmarkResponseDto> createBookmark(@RequestBody BookmarkRequestDto bookmarkRequestDto) {
-        Bookmark bookmark = bookmarkService.createBookmark(bookmarkRequestDto);
+        Bookmark bookmark;
+        try {
+            bookmark = bookmarkService.createBookmark(bookmarkRequestDto);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
         Long id = bookmark.getId();
         BookmarkResponseDto bookmarkResponseDto = new BookmarkResponseDto(bookmark);
         return ResponseEntity.created(URI.create("/bookmarks/" + id)).body(bookmarkResponseDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBookmark(@PathVariable Long bookmarkId) {
+    public ResponseEntity<?> deleteBookmark(@PathVariable Long id) {
         Bookmark bookmark;
         try {
-            bookmark = bookmarkService.findById(bookmarkId);
+            bookmark = bookmarkService.findById(id);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
