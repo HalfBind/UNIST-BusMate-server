@@ -41,6 +41,7 @@ public class DataManager {
                     Destination destination = Destination.get(destinationName);
                     assert destination != null;
                     DestinationInfo destinationInfo = new DestinationInfo(destination, departureTime);
+                    destinationInfo.setBus(bus);
                     destinationInfos.add(destinationInfo);
                 }
                 bus.setDestinationInfos(destinationInfos);

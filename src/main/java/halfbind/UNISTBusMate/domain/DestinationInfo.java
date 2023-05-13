@@ -3,6 +3,7 @@ package halfbind.UNISTBusMate.domain;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import halfbind.UNISTBusMate.util.TimeManager;
@@ -50,4 +51,6 @@ public class DestinationInfo {
     private Long id;
     private Destination destination;
     private String arrivalTime;
+    @DBRef
+    private Bus bus;
 }
