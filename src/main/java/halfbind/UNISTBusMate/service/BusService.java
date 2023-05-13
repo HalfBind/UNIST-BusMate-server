@@ -52,4 +52,8 @@ public class BusService {
             .filter(bus -> TimeManager.isAfter(bus.getDepartureTime(), departureTime))
             .toList();
     }
+
+    public Bus findById(Long id) {
+        busRepository.findById(id);
+    }
 }
