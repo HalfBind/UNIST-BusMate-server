@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import halfbind.UNISTBusMate.domain.Bus;
-import halfbind.UNISTBusMate.repository.BusRepository;
 import halfbind.UNISTBusMate.service.BusService;
 import halfbind.UNISTBusMate.util.DataManager;
 
@@ -36,6 +35,16 @@ public class BusController {
         Bus bus = busService.getBusById(id);
         if (bus != null) {
             return ResponseEntity.ok(bus);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/{routeNumber}/{routeDirection}")
+    public ResponseEntity<List<Bus>> getBusesByRoute(@PathVariable Long routeNumber, @PathVariable String routeDirection) {
+        List<Bus> buses = busService.getBusesByRouteId(routeNumber, routeDirection);
+        if (buses != null) {
+            return ResponseEntity.ok(buses);
         } else {
             return ResponseEntity.notFound().build();
         }
