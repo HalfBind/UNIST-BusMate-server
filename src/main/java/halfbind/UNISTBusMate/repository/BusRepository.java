@@ -9,5 +9,7 @@ import halfbind.UNISTBusMate.domain.Bus;
 
 @Repository
 public interface BusRepository extends MongoRepository<Bus, Long> {
+    List<Bus> findByRouteNumber(String routeNumber);
+
     List<Bus> findByRouteNumberAndRouteDirection(String routeNumber, String routeDirection);
 }

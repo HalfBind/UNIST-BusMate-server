@@ -31,14 +31,21 @@ public class BusController {
         System.out.println("Data initialization complete.");
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Bus> getBusById(@PathVariable Long id) {
-        Bus bus = busService.getBusById(id);
-        if (bus != null) {
-            return ResponseEntity.ok(bus);
+    @GetMapping("/{routeNumber}")
+    public ResponseEntity<List<Bus>> getBusesByRouteNumber(@PathVariable String routeNumber,
+        @RequestParam(required = false) String departureTime) {
+        List<Bus> buses;
+
+        if (departureTime != null) {
+            buses = busService.findByRouteNumberWithDepartureTime(routeNumber, departureTime);
         } else {
-            return ResponseEntity.notFound().build();
+            buses = busService.findByRouteNumber(routeNumber);
         }
+
+        if (buses != null) {
+            return ResponseEntity.ok(buses);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{routeNumber}/{routeDirection}")
@@ -47,7 +54,8 @@ public class BusController {
         List<Bus> buses;
 
         if (departureTime != null) {
-            buses = busService.findByRouteNumberAndDirectionWithDepartureTime(routeNumber, routeDirection, departureTime);
+            buses = busService.findByRouteNumberAndDirectionWithDepartureTime(routeNumber, routeDirection,
+                departureTime);
         } else {
             buses = busService.findByRouteNumberAndDirection(routeNumber, routeDirection);
         }

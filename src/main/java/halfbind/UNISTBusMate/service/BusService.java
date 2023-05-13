@@ -25,6 +25,18 @@ public class BusService {
         return busRepository.save(bus);
     }
 
+    public List<Bus> findByRouteNumber(String routeNumber) {
+        return busRepository.findByRouteNumber(routeNumber);
+    }
+
+    public List<Bus> findByRouteNumberWithDepartureTime(String routeNumber, String departureTime) {
+        List<Bus> buses = findByRouteNumber(routeNumber);
+        return buses
+            .stream()
+            .filter(bus -> TimeManager.isAfter(bus.getDepartureTime(), departureTime))
+            .toList();
+    }
+
     public List<Bus> findByRouteNumberAndDirection(String routeNumber, String routeDirection) {
         return busRepository.findByRouteNumberAndRouteDirection(routeNumber, routeDirection);
     }
