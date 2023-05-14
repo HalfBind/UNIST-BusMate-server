@@ -46,6 +46,18 @@ public class BusControllerTest {
     }
 
     @Test
+    public void testGetBusesByRouteNumberNotFound() throws Exception {
+        List<Bus> buses = new ArrayList<>();
+        buses.add(new Bus("123", "direction1", "10:00", new ArrayList<>()));
+        buses.add(new Bus("123", "direction2", "11:00", new ArrayList<>()));
+
+        Mockito.when(busService.findByRouteNumber("123")).thenReturn(buses);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/buses/1223"))
+            .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
     public void testGetBusesByRouteNumberAndDirection() throws Exception {
         List<Bus> buses = new ArrayList<>();
         buses.add(new Bus("123", "direction1", "10:00", new ArrayList<>()));
@@ -62,6 +74,19 @@ public class BusControllerTest {
     }
 
     @Test
+    public void testGetBusesByRouteNumberAndDirectionNotFound() throws Exception {
+        List<Bus> buses = new ArrayList<>();
+        buses.add(new Bus("123", "direction1", "10:00", new ArrayList<>()));
+        buses.add(new Bus("123", "direction1", "11:00", new ArrayList<>()));
+
+        Mockito.when(busService.findByRouteNumberAndDirection("123", "direction1")).thenReturn(buses);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/buses/123/direction3"))
+            .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+
+    @Test
     public void testGetBusesByRouteNumberWithDepartureTime() throws Exception {
         List<Bus> buses = new ArrayList<>();
         buses.add(new Bus("123", "direction1", "10:00", new ArrayList<>()));
@@ -72,6 +97,17 @@ public class BusControllerTest {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.[0].routeNumber", Matchers.is("123")))
             .andExpect(MockMvcResultMatchers.jsonPath("$.[0].routeDirection", Matchers.is("direction1")));
+    }
+
+    @Test
+    public void testGetBusesByRouteNumberWithDepartureTimeNotFound() throws Exception {
+        List<Bus> buses = new ArrayList<>();
+        buses.add(new Bus("123", "direction1", "10:00", new ArrayList<>()));
+
+        Mockito.when(busService.findByRouteNumberWithDepartureTime("123", "10:00")).thenReturn(buses);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/buses/1213?departureTime=10:00"))
+            .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -86,5 +122,17 @@ public class BusControllerTest {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.[0].routeNumber", Matchers.is("123")))
             .andExpect(MockMvcResultMatchers.jsonPath("$.[0].routeDirection", Matchers.is("direction1")));
+    }
+
+    @Test
+    public void testGetBusesByRouteNumberAndDirectionWithDepartureTimeNotFound() throws Exception {
+        List<Bus> buses = new ArrayList<>();
+        buses.add(new Bus("123", "direction1", "10:00", new ArrayList<>()));
+
+        Mockito.when(busService.findByRouteNumberAndDirectionWithDepartureTime("123", "direction1", "10:00"))
+            .thenReturn(buses);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/buses/123/direction11?departureTime=10:00"))
+            .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }
