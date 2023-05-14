@@ -7,8 +7,10 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import halfbind.UNISTBusMate.domain.Bus;
 import halfbind.UNISTBusMate.domain.Destination;
 import halfbind.UNISTBusMate.domain.DestinationInfo;
+import lombok.Data;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@Data
 public class DestinationInfoDto {
     private String routeNumber;
     private String routeDirection;

@@ -64,4 +64,8 @@ public class DestinationInfoController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    public void setDestinationInfoService(DestinationInfoService destinationInfoService) {
+        this.destinationInfoService = destinationInfoService;
+    }
 }
