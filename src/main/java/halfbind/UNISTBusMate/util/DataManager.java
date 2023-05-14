@@ -39,7 +39,9 @@ public class DataManager {
                 List<String> destinationNames = List.of(nextLine[3].split("\\|"));
                 for (String destinationName : destinationNames) {
                     Destination destination = Destination.get(destinationName);
-                    assert destination != null;
+                    if (destination == null) {
+                        continue;
+                    }
                     DestinationInfo destinationInfo = new DestinationInfo(destination, departureTime);
                     destinationInfo.setBus(bus);
                     destinationInfos.add(destinationInfo);
