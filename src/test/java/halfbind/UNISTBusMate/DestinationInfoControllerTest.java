@@ -59,6 +59,29 @@ public class DestinationInfoControllerTest {
     }
 
     @Test
+    public void testGetDestinationInfoByDestinationNameNotFound() throws Exception {
+        List<DestinationInfo> destinationInfos = new ArrayList<>();
+
+        Bus bus = new Bus();
+        bus.setRouteNumber("123");
+        bus.setDepartureTime("12:00");
+        bus.setId(1L);
+        bus.setRouteDirection("direction");
+        bus.setDestinationInfos(destinationInfos);
+
+        DestinationInfo destinationInfo = new DestinationInfo();
+        destinationInfo.setId(1L);
+        destinationInfo.setDestination(Destination.GUYEONG_RI);
+        destinationInfo.setBus(bus);
+        destinationInfos.add(destinationInfo);
+
+        when(destinationInfoService.findByDestinationName("GUYEONG_RI")).thenReturn(destinationInfos);
+
+        mockMvc.perform(get("/destinationInfos/SAMSAN").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void testGetDestinationInfoByDestinationNameWithDepartureTime() throws Exception {
         List<DestinationInfo> destinationInfos = new ArrayList<>();
 
@@ -85,6 +108,31 @@ public class DestinationInfoControllerTest {
             .andExpect(jsonPath("$.length()").value(1))
             .andExpect(jsonPath("$[0].destination").value(Destination.SEONGNAM.toString()))
             .andExpect(jsonPath("$[0].departureTime").value("09:00"));
+    }
+
+    @Test
+    public void testGetDestinationInfoByDestinationNameWithDepartureTimeNotFound() throws Exception {
+        List<DestinationInfo> destinationInfos = new ArrayList<>();
+
+        Bus bus = new Bus();
+        bus.setRouteNumber("123");
+        bus.setDepartureTime("09:00");
+        bus.setId(1L);
+        bus.setRouteDirection("direction");
+        bus.setDestinationInfos(destinationInfos);
+
+        DestinationInfo destinationInfo = new DestinationInfo();
+        destinationInfo.setId(1L);
+        destinationInfo.setDestination(Destination.SEONGNAM);
+        destinationInfos.add(destinationInfo);
+        destinationInfo.setBus(bus);
+
+        when(destinationInfoService.findByDestinationNameWithDepartureTime("SEONGNAM", "09:00")).thenReturn(
+            destinationInfos);
+
+        mockMvc.perform(
+                get("/destinationInfos/SAMSAN").param("departureTime", "09:00").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -115,6 +163,30 @@ public class DestinationInfoControllerTest {
     }
 
     @Test
+    public void testGetDestinationInfosByArrivalTimeNotFound() throws Exception {
+        List<DestinationInfo> destinationInfos = new ArrayList<>();
+
+        Bus bus = new Bus();
+        bus.setRouteNumber("123");
+        bus.setDepartureTime("11:00");
+        bus.setId(1L);
+        bus.setRouteDirection("direction");
+        bus.setDestinationInfos(destinationInfos);
+
+        DestinationInfo destinationInfo = new DestinationInfo();
+        destinationInfo.setId(1L);
+        destinationInfo.setDestination(Destination.SAMSAN);
+        destinationInfo.setBus(bus);
+        destinationInfos.add(destinationInfo);
+
+        when(destinationInfoService.findByDestinationNameAndArrivalTime("SAMSAN", "12:00")).thenReturn(
+            destinationInfos);
+
+        mockMvc.perform(get("/destinationInfos/SAMSAN/until/4:00"))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void testGetDestinationInfosByArrivalTimeWithDepartureTime() throws Exception {
         List<DestinationInfo> destinationInfos = new ArrayList<>();
 
@@ -140,5 +212,30 @@ public class DestinationInfoControllerTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.length()").value(1))
             .andExpect(jsonPath("$[0].destination").value(Destination.SAMSAN.toString()));
+    }
+
+    @Test
+    public void testGetDestinationInfosByArrivalTimeWithDepartureTimeNotFound() throws Exception {
+        List<DestinationInfo> destinationInfos = new ArrayList<>();
+
+        Bus bus = new Bus();
+        bus.setRouteNumber("123");
+        bus.setDepartureTime("11:00");
+        bus.setId(1L);
+        bus.setRouteDirection("direction");
+        bus.setDestinationInfos(destinationInfos);
+
+        DestinationInfo destinationInfo = new DestinationInfo();
+        destinationInfo.setId(1L);
+        destinationInfo.setDestination(Destination.SAMSAN);
+        destinationInfo.setBus(bus);
+        destinationInfos.add(destinationInfo);
+
+        when(destinationInfoService.findByDestinationNameAndArrivalTimeWithDepartureTime("SAMSAN", "12:00", "11:00")).thenReturn(
+            destinationInfos);
+
+        mockMvc.perform(get("/destinationInfos/SAMSAN/until/4:00").param("departureTime", "11:00")
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
     }
 }
