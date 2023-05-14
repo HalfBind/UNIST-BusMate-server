@@ -37,7 +37,7 @@ public class DestinationInfoController {
             .stream()
             .map(DestinationInfoDto::new)
             .toList();
-        if (result != null) {
+        if (result.size() > 0) {
             return ResponseEntity.ok(result);
         }
         return ResponseEntity.notFound().build();
@@ -59,7 +59,7 @@ public class DestinationInfoController {
             .stream()
             .map(DestinationInfoDto::new)
             .toList();
-        if (result != null) {
+        if (result.size() > 0) {
             return ResponseEntity.ok(result);
         }
         return ResponseEntity.notFound().build();
