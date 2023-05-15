@@ -10,7 +10,6 @@ import halfbind.UNISTBusMate.domain.DestinationInfo;
 import lombok.Data;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-@Data
 public class DestinationInfoDto {
     private String routeNumber;
     private String routeDirection;

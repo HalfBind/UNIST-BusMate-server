@@ -1,5 +1,7 @@
 package halfbind.UNISTBusMate.controller;
 
+import static java.util.Arrays.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
