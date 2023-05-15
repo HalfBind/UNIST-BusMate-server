@@ -29,7 +29,7 @@ public class BookmarkController {
             .stream()
             .map(BookmarkResponseDto::new)
             .toList();
-        if (result != null) {
+        if (result.size() > 0) {
             return ResponseEntity.ok(result);
         }
         return ResponseEntity.notFound().build();

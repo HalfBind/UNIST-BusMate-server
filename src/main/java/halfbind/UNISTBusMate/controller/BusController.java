@@ -26,7 +26,7 @@ public class BusController {
         this.busService = busService;
         List<Bus> buses = DataManager.getBusData();
 
-        buses.forEach(busService::createBus);
+        buses.forEach(busService::createBusForInit);
 
         System.out.println("Data initialization complete.");
     }

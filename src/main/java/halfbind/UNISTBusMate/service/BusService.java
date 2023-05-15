@@ -1,7 +1,6 @@
 package halfbind.UNISTBusMate.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +23,14 @@ public class BusService {
         return busRepository.findById(id).orElse(null);
     }
 
-    public Bus createBus(Bus bus) {
+    public Bus createBusForInit(Bus bus) {
         bus.setId(idCounter++);
         bus.getDestinationInfos().forEach(destinationInfoService::createDestinationInfo);
+        return busRepository.save(bus);
+    }
+
+    public Bus createBus(Bus bus) {
+        bus.setId(idCounter++);
         return busRepository.save(bus);
     }
 

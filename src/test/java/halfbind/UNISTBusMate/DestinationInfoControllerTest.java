@@ -1,5 +1,6 @@
 package halfbind.UNISTBusMate;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -237,5 +238,29 @@ public class DestinationInfoControllerTest {
         mockMvc.perform(get("/destinationInfos/SAMSAN/until/4:00").param("departureTime", "11:00")
                 .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void constructDestinationAndDestinationInfoTest() {
+        Destination destination;
+        DestinationInfo destinationInfo;
+        destination = Destination.get("KTX_ULSAN_STATION");
+        // assertEquals(destination, Destination.KTX_ULSAN_STATION);
+        destinationInfo = new DestinationInfo(destination, "12:00");
+        destination = Destination.get("SINBOK_ROTARY");
+        destinationInfo = new DestinationInfo(destination, "12:00");
+        destination = Destination.get("EONYANG_TERMINAL");
+        destinationInfo = new DestinationInfo(destination, "12:00");
+        destination = Destination.get("ULSAN_TERMINAL");
+        destinationInfo = new DestinationInfo(destination, "12:00");
+        destination = Destination.get("ULSAN_UNIVERSITY");
+        destinationInfo = new DestinationInfo(destination, "12:00");
+        destination = Destination.get("GUYEONG_RI");
+        destinationInfo = new DestinationInfo(destination, "12:00");
+        destination = Destination.get("SEONGNAM");
+        destinationInfo = new DestinationInfo(destination, "12:00");
+        destination = Destination.get("SAMSAN");
+        destinationInfo = new DestinationInfo(destination, "12:00");
+        destination = Destination.get("notexistdestination");
     }
 }
