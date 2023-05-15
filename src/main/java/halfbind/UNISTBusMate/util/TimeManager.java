@@ -47,6 +47,8 @@ public class TimeManager {
         Long targetHour = targetTimeInLong.getFirst();
         Long targetMinute = targetTimeInLong.getSecond();
 
+        targetMinute += minutes;
+
         return convertLongToString(targetHour, targetMinute);
     }
 
