@@ -15,7 +15,7 @@ import halfbind.UNISTBusMate.service.BusService;
 import halfbind.UNISTBusMate.util.DataManager;
 
 @RestController
-@RequestMapping("/buses")
+@RequestMapping("/api/buses")
 public class BusController {
 
     @Autowired
