@@ -15,7 +15,7 @@ import halfbind.UNISTBusMate.domain.DestinationInfo;
 import halfbind.UNISTBusMate.service.DestinationInfoService;
 
 @RestController
-@RequestMapping("/destinationInfos")
+@RequestMapping("/api/destinationInfos")
 public class DestinationInfoController {
 
     @Autowired

@@ -17,7 +17,7 @@ import halfbind.UNISTBusMate.domain.Bookmark;
 import halfbind.UNISTBusMate.service.BookmarkService;
 
 @RestController
-@RequestMapping("/bookmarks")
+@RequestMapping("/api/bookmarks")
 public class BookmarkController {
     @Autowired
     private BookmarkService bookmarkService;
