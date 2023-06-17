@@ -98,7 +98,7 @@
                             <phase>generate-resources</phase>
                             <configuration>
                                 <target>
-                                    <copy todir="${project.build.directory}/classes/public"> 
+                                    <copy todir="${project.build.directory}/${artifactId}"> 
                                         <fileset dir="src/RN/build" /> 
                                     </copy>
                                 </target>

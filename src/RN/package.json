@@ -2,7 +2,7 @@
   "name": "Busmate",
   "version": "0.0.1",
   "private": true,
-  "homepage": ".",
+  "homepage": "./UNIST-BusMate",
   "scripts": {
     "android": "react-native run-android",
     "android-staging": "react-native run-android --variant=releaseStaging",
