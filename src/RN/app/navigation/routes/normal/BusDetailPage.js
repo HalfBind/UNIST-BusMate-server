@@ -1,8 +1,15 @@
+import {useRoute} from '@react-navigation/native';
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 
 function BusDetailPage() {
-  return <View />;
+  const {params} = useRoute();
+  const {routeNumber} = params;
+  return (
+    <View>
+      <Text>{routeNumber + 'detal'}</Text>
+    </View>
+  );
 }
 
 export default BusDetailPage;

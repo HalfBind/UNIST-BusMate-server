@@ -47,3 +47,24 @@ export function getDateString(dateObj, option = 'default') {
     return year + '년 ' + month + '월 ' + date + '일';
   }
 }
+
+export function getTimeString(dateObj) {
+  let hour = dateObj.getHours();
+  if (hour.length === 1) {
+    hour = '0' + hour;
+  }
+  let minutes = dateObj.getMinutes();
+  if (minutes.length === 1) {
+    minutes = '0' + minutes;
+  }
+  return `${hour}:${minutes}`;
+}
+
+export function getMinuteLeft(targetMinute) {
+  const diffDateTime = new Date(`0000/01/01 ${targetMinute}:00`).getTime();
+  const nowDateTime = new Date(
+    `0000/01/01 ${getTimeString(new Date())}:00`,
+  ).getTime();
+  const diffMin = (diffDateTime - nowDateTime) / (60 * 1000);
+  return Math.floor(diffMin);
+}

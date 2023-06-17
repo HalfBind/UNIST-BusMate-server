@@ -1,10 +1,7 @@
+import {initialContext} from '@constants/dataConfig';
 import {createContext, useMemo, useReducer} from 'react';
 
-const initialData = {
-  inited: false,
-  isSigned: false,
-  userName: null,
-};
+const initialData = initialContext;
 
 const reducer = (prevState, action) => {
   switch (action.type) {

@@ -33,4 +33,16 @@ export const navigationConfig = {
       path: prefix + 'register',
     },
   },
+  HomeSetTime: {
+    paths: {},
+    linkConfig: {
+      path: prefix + 'set-time',
+    },
+  },
+  HomeSetDest: {
+    paths: {},
+    linkConfig: {
+      path: prefix + 'set-dest',
+    },
+  },
 };

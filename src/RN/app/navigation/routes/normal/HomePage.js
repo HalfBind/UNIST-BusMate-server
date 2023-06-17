@@ -1,25 +1,39 @@
+import {HomeComp} from '@UI/homeComp';
 import API from '@apis/apis';
-import {getW} from '@constants/appUnits';
-import {PressNavigate} from '@userInteraction/pressAction';
-import React, {useEffect} from 'react';
+import {UserDataContext} from '@hooks/userDataContext';
+import {FlatList_P} from '@platformPackage/gestureComponent';
+import React, {useContext, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 
 function HomePage() {
+  const {dest, time, mode} = useContext(UserDataContext);
+  const [state, setState] = useState({
+    loadState: 'loading',
+    busList: [],
+  });
+
   useEffect(() => {
-    async function apiTest() {
-      const res = await API.getBusWithRoute({routeNumber: 133});
-      console.log('api res???', res);
+    async function loadBusList() {
+      const {data: resList} = await API.getBusList({dest, time, mode});
+      console.log('resLsit : ', resList);
+      setState({loadState: 'loaded', busList: resList.slice(0, 10)});
     }
-    apiTest();
-  }, []);
+    //todo : 가까운 노선만 필터
+    //todo : UNIST 방면 제외
+
+    loadBusList();
+  }, [dest, time, mode]);
 
   return (
-    <View style={{flex: 1, backgroundColor: 'green'}}>
-      <PressNavigate
-        style={{width: getW(100), height: getW(100), backgroundColor: 'red'}}
-        routeName={'BusDetail'}
+    <View style={{flex: 1, backgroundColor: 'white'}}>
+      <FlatList_P
+        ListHeaderComponent={<HomeComp.Header homeState={{dest, time, mode}} />}
+        data={state.busList}
+        renderItem={({item, index}) => {
+          return <HomeComp.BusInfo busInfo={item} />;
+        }}
+        ListEmptyComponent={<Text>조건에 맞는 버스가 없습니다</Text>}
       />
-      <Text>Hello!</Text>
     </View>
   );
 }

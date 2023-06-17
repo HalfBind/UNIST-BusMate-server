@@ -10,6 +10,8 @@ import AddAlarmPage from '@routes/normal/AddAlarmPage';
 import AlarmListPage from '@routes/normal/AlarmListPage';
 import BusDetailPage from '@routes/normal/BusDetailPage';
 import RegisterPage from '@routes/modal/RegisterPage';
+import HomeSetTime from '@routes/modal/HomeSetTime';
+import HomeSetDest from '@routes/modal/HomeSetDest';
 // import createStackNavigator from '@navigators/createStackNavigator';
 // import {createMyStack} from './MyStackNavigator';
 
@@ -54,6 +56,16 @@ function RootStackNavigator({splashOptions = {}}) {
         <Stack.Screen
           name="Register"
           component={RegisterPage}
+          options={{...getEmptyHeader()}}
+        />
+        <Stack.Screen
+          name="HomeSetTime"
+          component={HomeSetTime}
+          options={{...getEmptyHeader()}}
+        />
+        <Stack.Screen
+          name="HomeSetDest"
+          component={HomeSetDest}
           options={{...getEmptyHeader()}}
         />
       </Stack.Group>

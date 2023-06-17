@@ -1,8 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 
 function AddAlarmPage() {
-  return <View />;
+  return (
+    <View>
+      <Text>add alarm</Text>
+    </View>
+  );
 }
 
 export default AddAlarmPage;

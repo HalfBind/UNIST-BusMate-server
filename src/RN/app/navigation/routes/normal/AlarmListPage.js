@@ -1,8 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 
 function AlarmListPage() {
-  return <View />;
+  return (
+    <View>
+      <Text>alarm list</Text>
+    </View>
+  );
 }
 
 export default AlarmListPage;

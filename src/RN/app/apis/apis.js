@@ -1,6 +1,9 @@
+import {getTimeString} from '@_utils/converters';
 import axios from 'axios';
 
-const BASE = 'http://localhost:8080/UNIST-BusMate/';
+const BASE = 'http://localhost:8080/UNIST-BusMate/api/';
+const DEST = BASE + 'destinationInfos/';
+const BUS = BASE + 'buses/';
 
 const API_ORIGIN = {
   bus: async ({routeNumber}) => {
@@ -17,7 +20,21 @@ const API_ORIGIN = {
 };
 
 const API = {
-  getBusWithRoute: API_ORIGIN.bus,
+  getBusList: async ({dest, mode, time}) => {
+    const add =
+      mode === 'leave'
+        ? `${dest}?departureTime=${time}`
+        : `${dest}/until/${time}?departureTime=${getTimeString(new Date())}`;
+    try {
+      const res = await axios({
+        url: DEST + add,
+        method: 'get',
+      });
+      return res;
+    } catch (error) {
+      console.log('error from getBusList', error);
+    }
+  },
 };
 
 export default API;

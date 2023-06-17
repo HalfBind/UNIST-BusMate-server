@@ -1,13 +1,12 @@
 const COLORS = {
-  black70P: 'rgba(0, 0, 0, 0.7)',
+  gradBlue: '#0074FF',
   black10P: 'rgba(0, 0, 0, 0.1)',
+  black25P: 'rgba(0, 0, 0, 0.25)',
   black8p: 'rgba(0, 0, 0, 0.08)',
   white: 'white',
-  lightGray3: '#EAEAEA',
-  red: '#FF4921',
-  green: '#01D146',
-  gray94: '#949494',
-  grayA6: '#A6A6A6',
+  main20P: 'rgba(0, 116, 255, 0.2)',
+  main10P: 'rgba(0, 116, 255, 0.1)',
+  main29: '#00295A',
 
   // skeleton2: '#B0B0B0',
 };

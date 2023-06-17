@@ -122,7 +122,7 @@ export const OpenBottomModal = ({
 };
 
 export const PressGoBack = ({style, children, ripple, onPress = () => {}}) => {
-  const {_goBack} = useNavigation();
+  const {goBack} = useNavigation();
   const [disabled, setDisabled] = useState(false);
 
   return (
@@ -133,7 +133,7 @@ export const PressGoBack = ({style, children, ripple, onPress = () => {}}) => {
       onPress={async () => {
         setDisabled(true);
         onPress();
-        await _goBack();
+        await goBack();
         await sleep(BTN_DISABLE_MS);
         setDisabled(false);
       }}>

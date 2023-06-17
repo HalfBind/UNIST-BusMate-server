@@ -61,8 +61,6 @@ export const ScrollView_defaultPage = ({
   ...rest
 }) => {
   const defaultRef = useRef(null);
-  const FixedRouteName = React.useMemo(() => routeName, []);
-
   const hasOnScroll = externalOnScroll;
   const onScroll = e => {
     externalOnScroll && externalOnScroll(e);
