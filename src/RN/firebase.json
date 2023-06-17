@@ -1,0 +1,19 @@
+{
+  "react-native": {
+    "google_analytics_automatic_screen_reporting_enabled": false,
+    "android_task_executor_maximum_pool_size": 10,
+    "android_task_executor_keep_alive_seconds": 3,
+    "crashlytics_debug_enabled": false
+  },
+  "hosting": {
+    "public": "build",
+    "cleanUrls": true,
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
