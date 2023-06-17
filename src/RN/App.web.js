@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput} from 'react-native';
-
 import AppNavigationContainer from '@navigationConfigs/AppNavigationContainer';
 import {CreateUserDataContext} from '@hooks/userDataContext';
-import {FOOD_LIST} from '@_constants/testData';
 Text.defaultProps = {
   ...(Text.defaultProps || {}),
   allowFontScaling: false,

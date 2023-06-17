@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "homepage": "./UNIST-BusMate",
+  "proxy": "http://localhost:8080",
   "scripts": {
     "android": "react-native run-android",
     "android-staging": "react-native run-android --variant=releaseStaging",

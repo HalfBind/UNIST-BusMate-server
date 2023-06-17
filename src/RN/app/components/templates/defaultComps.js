@@ -1,4 +1,4 @@
-import {getW, IS_WEB} from '@constants/appUnits';
+import {getW} from '@constants/appUnits';
 import React, {useEffect, useState, useRef} from 'react';
 import {View, Platform, SectionList} from 'react-native';
 import {
@@ -100,8 +100,8 @@ export const ScrollView_defaultPage = ({
         <View
           pointerEvents="box-none"
           style={{
-            position: IS_WEB ? 'fixed' : 'absolute',
-            top: IS_WEB ? headerHeight - stickyHideOffset : 0,
+            position: 'fixed',
+            top: headerHeight - stickyHideOffset,
             left: 0,
             right: 0,
           }}>
@@ -112,7 +112,7 @@ export const ScrollView_defaultPage = ({
         <View
           pointerEvents="box-none"
           style={{
-            position: IS_WEB ? 'fixed' : 'absolute',
+            position: 'fixed',
             bottom: 0,
             left: 0,
             right: 0,
@@ -205,8 +205,8 @@ export const SectionList_defaultPage = ({
         <View
           pointerEvents="box-none"
           style={{
-            position: IS_WEB ? 'fixed' : 'absolute',
-            top: IS_WEB ? headerHeight - stickyHideOffset : 0,
+            position: 'fixed',
+            top: headerHeight - stickyHideOffset,
             left: 0,
             right: 0,
           }}>
@@ -217,7 +217,7 @@ export const SectionList_defaultPage = ({
         <View
           pointerEvents="box-none"
           style={{
-            position: IS_WEB ? 'fixed' : 'absolute',
+            position: 'fixed',
             bottom: 0,
             left: 0,
             right: 0,
@@ -298,8 +298,8 @@ export const FlatList_defaultPage = ({
         <View
           pointerEvents="box-none"
           style={{
-            position: IS_WEB ? 'fixed' : 'absolute',
-            top: IS_WEB ? headerHeight - stickyHideOffset : 0,
+            position: 'fixed',
+            top: headerHeight - stickyHideOffset,
             left: 0,
             right: 0,
           }}>
@@ -310,7 +310,7 @@ export const FlatList_defaultPage = ({
         <View
           pointerEvents="box-none"
           style={{
-            position: IS_WEB ? 'fixed' : 'absolute',
+            position: 'fixed',
             bottom: 0,
             left: 0,
             right: 0,

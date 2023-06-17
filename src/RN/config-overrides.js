@@ -39,19 +39,18 @@ module.exports = {
     addWebpackAlias({
       'react-native-linear-gradient': 'react-native-web-linear-gradient',
       'lottie-react-native': 'react-native-web-lottie',
-      '@_api': path.resolve(__dirname, '_api'),
       '@_constants': path.resolve(__dirname, '_constants'),
       '@_functions': path.resolve(__dirname, '_functions'),
       '@_utils': path.resolve(__dirname, '_utils'),
       '@styles': path.resolve(__dirname, 'app/assets/styles'),
       '@utils': path.resolve(__dirname, 'app/utils'),
       '@images': path.resolve(__dirname, 'app/assets/images'),
-      '@lotties': path.resolve(__dirname, 'app/assets/lotties'),
-      '@animations': path.resolve(__dirname, 'app/assets/animations'),
       '@hooks': path.resolve(__dirname, 'app/hooks'),
       '@constants': path.resolve(__dirname, 'app/constants'),
       '@icons': path.resolve(__dirname, 'app/assets/icons'),
       '@functions': path.resolve(__dirname, 'app/functions'),
+      '@apis': path.resolve(__dirname, 'app/apis'),
+
       '@platformPackage': path.resolve(
         __dirname,
         'app/components/platformPackage',
