@@ -5,14 +5,11 @@ import {
   TransitionOptions,
   getEmptyHeader,
 } from '@components/navigationComponents';
-import Home from '@routes/normal/Home';
-import Search from '@routes/normal/Search';
-import ItemDetail from '@routes/normal/ItemDetail';
-import ItemList from '@routes/normal/ItemList';
-import ItemAdd from '@routes/modal/ItemAdd';
-import CalendarPage from '@routes/modal/CalandarPage';
-import CategorySelecter from '@routes/modal/CategorySelecter';
-import DeleteConfirm from '@routes/modal/DeleteConfirm';
+import HomePage from '@routes/normal/HomePage';
+import AddAlarmPage from '@routes/normal/AddAlarmPage';
+import AlarmListPage from '@routes/normal/AlarmListPage';
+import BusDetailPage from '@routes/normal/BusDetailPage';
+import RegisterPage from '@routes/modal/RegisterPage';
 // import createStackNavigator from '@navigators/createStackNavigator';
 // import {createMyStack} from './MyStackNavigator';
 
@@ -30,12 +27,35 @@ function RootStackNavigator({splashOptions = {}}) {
         },
       }}>
       <Stack.Group screenOptions={{...TransitionOptions.STACK_DEFAULT}}>
-    
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+          options={{...getEmptyHeader()}}
+        />
+        <Stack.Screen
+          name="AddAlarm"
+          component={AddAlarmPage}
+          options={{...getEmptyHeader()}}
+        />
+        <Stack.Screen
+          name="AlarmList"
+          component={AlarmListPage}
+          options={{...getEmptyHeader()}}
+        />
+        <Stack.Screen
+          name="BusDetail"
+          component={BusDetailPage}
+          options={{...getEmptyHeader()}}
+        />
       </Stack.Group>
-      <Stack.Group screenOptions={{...TransitionOptions.BOTTOM_MODAL}}>
-       
-      </Stack.Group>
+
+      <Stack.Group screenOptions={{...TransitionOptions.BOTTOM_MODAL}} />
       <Stack.Group screenOptions={{...TransitionOptions.CENTER_MODAL}}>
+        <Stack.Screen
+          name="Register"
+          component={RegisterPage}
+          options={{...getEmptyHeader()}}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );

@@ -1,76 +1,36 @@
-export const appDefaultInitialNavState = {
-  index: 1,
-  routes: [{name: 'BottomTabNavigator'}, {name: 'SplashScreen'}],
-};
+const prefix = '/UNIST-BusMate/';
 
 export const navigationConfig = {
   RootStackNavigator: {
-    child: [
-      'Home',
-      'Search',
-      'ItemDetail',
-      'ItemList',
-      'ItemAdd',
-      'CalendarPage',
-      'CategorySelecter',
-      'DeleteConfirm',
-    ],
+    child: ['Home', 'AddAlarm', 'AlarmList', 'BusDetail', 'Register'],
     paths: {},
-    linkConfig: {},
   },
   Home: {
     paths: {},
-    linkConfig: {},
+    linkConfig: {path: prefix},
   },
-  Search: {
+  AddAlarm: {
     paths: {},
     linkConfig: {
-      path: 'search',
+      path: prefix + 'add-alarm',
     },
   },
-  ItemDetail: {
+  AlarmList: {
     paths: {},
     linkConfig: {
-      path: 'item-detail/:foodId',
-      parse: {
-        foodId: param => decodeURIComponent(param),
-      },
+      path: prefix + 'alarm-list',
     },
   },
-  ItemList: {
+  BusDetail: {
     paths: {},
     linkConfig: {
-      path: 'items/:foodName',
-      parse: {
-        foodName: param => decodeURIComponent(param),
-      },
+      path: prefix + 'bus',
     },
   },
-  ItemAdd: {
+  Register: {
     paths: {},
     linkConfig: {
-      path: 'edit-food/:foodId',
-      parse: {
-        foodId: param => decodeURIComponent(param),
-      },
-    },
-  },
-  CalendarPage: {
-    paths: {},
-    linkConfig: {
-      path: 'calendar',
-    },
-  },
-  CategorySelecter: {
-    paths: {},
-    linkConfig: {
-      path: 'selectCategory',
-    },
-  },
-  DeleteConfirm: {
-    paths: {},
-    linkConfig: {
-      path: 'delete',
+      path: prefix + 'register',
     },
   },
 };

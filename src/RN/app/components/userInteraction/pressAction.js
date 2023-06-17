@@ -4,7 +4,7 @@ import {Pressable} from 'react-native';
 import {isExist} from '@_utils/validation';
 import {RIPPLE_STYLE} from '@styles/colors';
 import {BTN_DISABLE_MS} from '@_constants/units';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 //api, navigate, setState등의 액션을 wrapping 해주는 컴포넌트
 
@@ -36,10 +36,7 @@ export const PressNavigate = ({
         }
         setDisabled(true);
         onPress();
-        _navigate(
-          routeName,
-          isExist(data) ? {data, ...extraParam} : extraParam,
-        );
+        navigate(routeName, isExist(data) ? {data, ...extraParam} : extraParam);
         await sleep(BTN_DISABLE_MS);
         setDisabled(false);
       }}>
@@ -48,9 +45,9 @@ export const PressNavigate = ({
   );
 };
 // export const PressNavigate = ({children, routeName, params}) => {
-//   const {_navigate} = useNavigation();
+//   const {navigate} = useNavigation();
 //   return (
-//     <Pressable onPress={() => _navigate(routeName, {data: params})}>
+//     <Pressable onPress={() => navigate(routeName, {data: params})}>
 //       {children}
 //     </Pressable>
 //   );
@@ -64,7 +61,7 @@ export const OpenCenterModal = ({
   ripple,
   ...props
 }) => {
-  const {_navigate} = useNavigation();
+  const {navigate} = useNavigation();
   const [disabled, setDisabled] = useState(false);
   const {type, property, option} = modalOption;
 
@@ -80,7 +77,7 @@ export const OpenCenterModal = ({
       android_ripple={ripple ? RIPPLE_STYLE.default : null}
       onPress={async () => {
         setDisabled(true);
-        await _navigate('CenterModal', {data: {type, property, option}});
+        await navigate('CenterModal', {data: {type, property, option}});
         await sleep(BTN_DISABLE_MS);
         setDisabled(false);
       }}>
@@ -97,7 +94,7 @@ export const OpenBottomModal = ({
   ripple,
   ...props
 }) => {
-  const {_navigate} = useNavigation();
+  const {navigate} = useNavigation();
   const [disabled, setDisabled] = useState(false);
   const {type, property, option} = modalOption;
   return (
@@ -113,7 +110,7 @@ export const OpenBottomModal = ({
       onPress={async () => {
         setDisabled(true);
         onPress();
-        await _navigate('BottomModal', {
+        await navigate('BottomModal', {
           data: {type, property, option},
         });
         await sleep(BTN_DISABLE_MS);
@@ -146,11 +143,11 @@ export const PressGoBack = ({style, children, ripple, onPress = () => {}}) => {
 };
 
 // export const PressNavigateRipple = ({children, routeName, params}) => {
-//   const {_navigate} = useNavigation();
+//   const {navigate} = useNavigation();
 //   return (
 //     <Pressable
 //       android_ripple={RIPPLE_STYLE}
-//       onPress={() => _navigate(routeName, {data: params})}>
+//       onPress={() => navigate(routeName, {data: params})}>
 //       {children}
 //     </Pressable>
 //   );
