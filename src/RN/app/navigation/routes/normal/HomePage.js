@@ -65,7 +65,7 @@ function HomePage() {
         }}
         ListEmptyComponent={
           <ListEmptyElem
-            decscription={'조건에 맞는 버스가 없습니다'}
+            description={'조건에 맞는 버스가 없습니다'}
             isLoading={state.loadState === 'loading'}
           />
         }
