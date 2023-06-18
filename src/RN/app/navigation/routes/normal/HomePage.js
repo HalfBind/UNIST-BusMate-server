@@ -7,7 +7,6 @@ import {THICK_PADDING, getW} from '@constants/appUnits';
 import {UserDataContext} from '@hooks/userDataContext';
 import {FlatList_P} from '@platformPackage/gestureComponent';
 import React, {useContext, useEffect, useState} from 'react';
-import {TimePickerModal} from 'react-native-paper-dates';
 
 //todo : empty page
 
@@ -17,7 +16,6 @@ function HomePage() {
     loadState: 'loading',
     busList: [],
   });
-  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     async function loadBusList() {
@@ -48,7 +46,6 @@ function HomePage() {
         stickyHeaderIndices={[0]}
         ListHeaderComponent={
           <HomeComp.Header
-            openTimePicker={() => setModalVisible(true)}
             onModeSelect={newMode => {
               setMode(newMode);
             }}
@@ -76,11 +73,6 @@ function HomePage() {
           right: THICK_PADDING + getW(20),
           bottom: getW(20),
         }}
-      />
-      <TimePickerModal
-        visible={modalVisible}
-        onDismiss={() => setModalVisible(false)}
-        onConfirm={({hours, minutes}) => {}}
       />
     </LinearBGView>
   );

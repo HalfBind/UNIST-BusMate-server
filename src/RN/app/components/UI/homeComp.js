@@ -37,12 +37,7 @@ const ModeBtn = ({curMode, onSelect}) => (
 );
 
 export const HomeComp = {
-  Header: ({
-    homeState,
-    openTimePicker = DoNothing,
-    onModeSelect = DoNothing,
-    onRefresh = DoNothing,
-  }) => {
+  Header: ({homeState, onModeSelect = DoNothing, onRefresh = DoNothing}) => {
     const {dest, time, mode} = homeState;
 
     return (
