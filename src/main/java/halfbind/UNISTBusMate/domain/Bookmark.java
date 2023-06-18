@@ -16,6 +16,7 @@ public class Bookmark {
     private Long id;
     @DBRef
     private Bus bus;
+    public Long timeOffset;
     private String userName;
     private List<Day> days;
 
@@ -49,5 +50,13 @@ public class Bookmark {
 
     public void setBus(Bus bus) {
         this.bus = bus;
+    }
+
+    public Long getTimeOffset() {
+        return timeOffset;
+    }
+
+    public void setTimeOffset(Long timeOffset) {
+        this.timeOffset = timeOffset;
     }
 }
