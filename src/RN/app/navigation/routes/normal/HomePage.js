@@ -1,40 +1,88 @@
 import {HomeComp} from '@UI/homeComp';
+import {LinearBGView, ListEmptyElem} from '@UI/share';
+import {timeToNum} from '@_utils/converters';
+import {isEmpty} from '@_utils/validation';
 import API from '@apis/apis';
+import {THICK_PADDING, getW} from '@constants/appUnits';
 import {UserDataContext} from '@hooks/userDataContext';
 import {FlatList_P} from '@platformPackage/gestureComponent';
 import React, {useContext, useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {TimePickerModal} from 'react-native-paper-dates';
+
+//todo : empty page
 
 function HomePage() {
-  const {dest, time, mode} = useContext(UserDataContext);
+  const {dest, time, mode, refreshTime, setMode} = useContext(UserDataContext);
   const [state, setState] = useState({
     loadState: 'loading',
     busList: [],
   });
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     async function loadBusList() {
       const {data: resList} = await API.getBusList({dest, time, mode});
-      console.log('resLsit : ', resList);
-      setState({loadState: 'loaded', busList: resList.slice(0, 10)});
+
+      const dict = {};
+      resList.map(curInfo => {
+        const {routeNumber} = curInfo;
+        if (!dict[routeNumber]) {
+          dict[routeNumber] = curInfo;
+        }
+      });
+      const filtered = Object.values(dict).sort(
+        (a, b) => timeToNum(a.departureTime) - timeToNum(b.departureTime),
+      );
+      setState({
+        loadState: isEmpty(filtered) ? 'empty' : 'loaded',
+        busList: filtered,
+      });
     }
-    //todo : 가까운 노선만 필터
-    //todo : UNIST 방면 제외
 
     loadBusList();
   }, [dest, time, mode]);
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <LinearBGView>
       <FlatList_P
-        ListHeaderComponent={<HomeComp.Header homeState={{dest, time, mode}} />}
+        stickyHeaderIndices={[0]}
+        ListHeaderComponent={
+          <HomeComp.Header
+            openTimePicker={() => setModalVisible(true)}
+            onModeSelect={newMode => {
+              setMode(newMode);
+            }}
+            onRefresh={refreshTime}
+            homeState={{dest, time, mode}}
+          />
+        }
+        contentContainerStyle={{paddingBottom: getW(80)}}
         data={state.busList}
         renderItem={({item, index}) => {
-          return <HomeComp.BusInfo busInfo={item} />;
+          return (
+            <HomeComp.BusInfo busInfo={item} style={{marginTop: getW(16)}} />
+          );
         }}
-        ListEmptyComponent={<Text>조건에 맞는 버스가 없습니다</Text>}
+        ListEmptyComponent={
+          <ListEmptyElem
+            decscription={'조건에 맞는 버스가 없습니다'}
+            isLoading={state.loadState === 'loading'}
+          />
+        }
       />
-    </View>
+      <HomeComp.AlarmListBtn
+        style={{
+          position: 'fixed',
+          right: THICK_PADDING + getW(20),
+          bottom: getW(20),
+        }}
+      />
+      <TimePickerModal
+        visible={modalVisible}
+        onDismiss={() => setModalVisible(false)}
+        onConfirm={({hours, minutes}) => {}}
+      />
+    </LinearBGView>
   );
 }
 

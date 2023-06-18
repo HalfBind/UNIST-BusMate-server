@@ -1,6 +1,6 @@
 import React from 'react';
 import {Horizon} from '@templates/defaultComps';
-import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@constants/appUnits';
+import {WINDOW_HEIGHT} from '@constants/appUnits';
 import {getW} from '@constants/appUnits';
 import {View, Text} from 'react-native';
 import {getHeaderTitle} from '@react-navigation/elements';
@@ -250,7 +250,7 @@ export const getStackHeader = ({
 };
 
 export const getEmptyHeader = () => {
-    return {headerShown: false};
+  return {headerShown: false};
 };
 
 export const navTransition = {
@@ -263,7 +263,7 @@ export const navTransition = {
 };
 
 export const TransitionOptions = {
-  STACK_DEFAULT: navTransition.NONE ,
+  STACK_DEFAULT: navTransition.NONE,
   BOTTOM_MODAL: navTransition.BOTTOM_MODAL,
   CENTER_MODAL: navTransition.CENTER_MODAL,
   SIMPLE_CENTER_MODAL: navTransition.SIMPLE_CENTER_MODAL,

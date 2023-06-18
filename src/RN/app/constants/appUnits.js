@@ -1,4 +1,4 @@
-import {Dimensions, Platform} from 'react-native';
+import {Dimensions} from 'react-native';
 
 export const browserAgent = navigator.userAgent;
 
@@ -25,7 +25,6 @@ function getOS() {
 
   return os;
 }
-
 
 export const DESIGN_PIXEL_WIDTH = 360;
 export const DESING_PIXEL_HEIGHT = 800;
@@ -58,3 +57,5 @@ export const getHFloat = designPixel => {
 export const TABBAR_HEIGHT_ROUGH = getH(130);
 
 export const STACK_HEADER_HEIGHT = getW(100);
+
+export const THICK_PADDING = IS_THICK ? (REAL_WIDTH - WINDOW_WIDTH) / 2 : 0;
