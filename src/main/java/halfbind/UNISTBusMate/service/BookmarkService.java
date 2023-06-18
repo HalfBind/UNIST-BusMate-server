@@ -33,6 +33,7 @@ public class BookmarkService {
         bookmark.setUserName(bookmarkRequestDto.getUserName());
         Bus bus = busService.findById(bookmarkRequestDto.getBusId());
         bookmark.setBus(bus);
+        bookmark.setTimeOffset(bookmarkRequestDto.getTimeOffset());
         bookmark.setDays(bookmarkRequestDto.getDays());
         bookmarkRepository.save(bookmark);
         return bookmark;

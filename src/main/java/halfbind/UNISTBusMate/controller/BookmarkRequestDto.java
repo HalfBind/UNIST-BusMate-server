@@ -9,6 +9,7 @@ public class BookmarkRequestDto {
     private Long busId;
     private String userName;
     private List<Day> days;
+    private Long timeOffset;
 
     public String getUserName() {
         return userName;
@@ -32,5 +33,9 @@ public class BookmarkRequestDto {
 
     public void setDays(List<Day> days) {
         this.days = days;
+    }
+
+    public Long getTimeOffset() {
+        return timeOffset;
     }
 }
