@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "./UNIST-BusMate/static/css/main.b3d4e613.css",
-    "main.js": "./UNIST-BusMate/static/js/main.d861814e.js",
-    "index.html": "./UNIST-BusMate/index.html"
+    "main.css": "./static/css/main.b3d4e613.css",
+    "main.js": "./static/js/main.77edd88f.js",
+    "index.html": "./index.html"
   },
   "entrypoints": [
     "static/css/main.b3d4e613.css",
-    "static/js/main.d861814e.js"
+    "static/js/main.77edd88f.js"
   ]
 }

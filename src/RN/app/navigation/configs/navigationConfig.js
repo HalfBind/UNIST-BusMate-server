@@ -1,4 +1,4 @@
-import {IS_SPRING} from 'app/appConfig';
+import {IS_SPRING} from '@_constants/appConfig';
 
 const prefix = IS_SPRING ? '/' : '/UNIST-BusMate/';
 

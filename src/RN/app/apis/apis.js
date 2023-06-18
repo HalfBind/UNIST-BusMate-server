@@ -1,5 +1,5 @@
 import {getTimeString} from '@_utils/converters';
-import {IS_SPRING} from 'app/appConfig';
+import {IS_SPRING} from '@_constants/appConfig';
 import axios from 'axios';
 const BASE = IS_SPRING
   ? 'http://localhost:8080/UNIST-BusMate/api/'
