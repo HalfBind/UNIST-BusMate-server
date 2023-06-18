@@ -1,18 +1,17 @@
 import {HomeComp} from '@UI/homeComp';
+import {timeToNum} from '@_utils/converters';
 import {isEmpty} from '@_utils/validation';
 import API from '@apis/apis';
-import {getW} from '@constants/appUnits';
+import {WINDOW_HEIGHT, getW} from '@constants/appUnits';
 import {UserDataContext} from '@hooks/userDataContext';
 import {FlatList_P} from '@platformPackage/gestureComponent';
 import COLORS from '@styles/colors';
+import font from '@styles/textStyle';
 import React, {useContext, useEffect, useState} from 'react';
 import {ActivityIndicator, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {TimePickerModal} from 'react-native-paper-dates';
 
-//todo : 가까운 노선만 필터
-//todo : UNIST 방면 제외
-//todo : refresh
 //todo : empty page
 
 function HomePage() {
@@ -35,9 +34,8 @@ function HomePage() {
         }
       });
       const filtered = Object.values(dict).sort(
-        (a, b) => a.departureTime - b.departureTime,
+        (a, b) => timeToNum(a.departureTime) - timeToNum(b.departureTime),
       );
-      console.log('resLsit : ', filtered);
       setState({
         loadState: isEmpty(filtered) ? 'empty' : 'loaded',
         busList: filtered,
@@ -73,13 +71,20 @@ function HomePage() {
           );
         }}
         ListEmptyComponent={
-          state.loadState === 'empty' ? (
-            <Text>조건에 맞는 버스가 없습니다</Text>
-          ) : (
-            <View>
+          <View
+            style={{
+              height: WINDOW_HEIGHT / 2,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            {state.loadState === 'empty' ? (
+              <Text style={[font.b16, {color: '#868686'}]}>
+                조건에 맞는 버스가 없습니다
+              </Text>
+            ) : (
               <ActivityIndicator size={'large'} color={COLORS.main} />
-            </View>
-          )
+            )}
+          </View>
         }
       />
       <HomeComp.AddAlarmBtn

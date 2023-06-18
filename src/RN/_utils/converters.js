@@ -60,6 +60,11 @@ export function getTimeString(dateObj) {
   return `${hour}:${minutes}`;
 }
 
+export function timeToNum(timeString) {
+  let [hour, minute] = timeString.split(':');
+  return Number(hour + minute);
+}
+
 export function getAPMTime(timeString) {
   let [hour, minute] = timeString.split(':');
   let pref = '오전';
