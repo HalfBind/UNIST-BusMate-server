@@ -11,7 +11,7 @@
     <groupId>halfbind</groupId>
     <artifactId>UNIST-BusMate</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <!-- <packaging>war</packaging> -->
     <name>UNIST-BusMate</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -109,31 +109,7 @@
                             </configuration>
                         </execution>
                     </executions>
-            </plugin>
-             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>halfbind.UNISTBusMate</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                      <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>package-everything</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>        
+            </plugin> 
         </plugins>
     </build>
 </project>
