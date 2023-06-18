@@ -72,6 +72,12 @@ export function getAPMTime(timeString) {
     hour = String(Number(hour) - 12);
     pref = '오후';
   }
+  if (hour.length === 1) {
+    hour = '0' + hour;
+  }
+  if (minute.length === 1) {
+    minute = '0' + minute;
+  }
 
   return pref + ' ' + hour + ':' + minute;
 }

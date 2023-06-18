@@ -1,4 +1,6 @@
-const prefix = '/UNIST-BusMate/';
+import {IS_SPRING} from '@_constants/appConfig';
+
+const prefix = IS_SPRING ? '/' : '/UNIST-BusMate/';
 
 export const navigationConfig = {
   RootStackNavigator: {

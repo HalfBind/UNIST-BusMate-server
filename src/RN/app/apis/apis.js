@@ -1,7 +1,9 @@
 import {getTimeString} from '@_utils/converters';
+import {IS_SPRING} from '@_constants/appConfig';
 import axios from 'axios';
-
-const BASE = 'http://localhost:8080/UNIST-BusMate/api/';
+const BASE = IS_SPRING
+  ? 'http://localhost:8080/api/'
+  : 'http://localhost:8080/UNIST-BusMate/api/';
 const DEST = BASE + 'destinationInfos/';
 const BUS = BASE + 'buses/';
 const NOTI = BASE + 'bookmarks/';
@@ -35,9 +37,9 @@ const API = {
       return res;
     } catch (error) {
       console.log('error from getBusList', error.response.status, error);
-      if (error.response.status === 404) {
-        return {data: []};
-      }
+      return {data: []};
+      // if (error.response.status === 404) {
+      // }
     }
   },
   getTimeTable: async ({routeNumber, routeDirection}) => {

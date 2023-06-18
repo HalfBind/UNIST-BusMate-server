@@ -36,8 +36,11 @@ function HomePage() {
         busList: filtered,
       });
     }
-
-    loadBusList();
+    try {
+      loadBusList();
+    } catch (error) {
+      console.log('error from load BusList', error);
+    }
   }, [dest, time, mode]);
 
   return (
