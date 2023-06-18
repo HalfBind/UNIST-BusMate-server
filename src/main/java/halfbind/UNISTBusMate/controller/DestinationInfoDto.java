@@ -17,11 +17,14 @@ public class DestinationInfoDto {
     private Destination destination;
     private String arrivalTime;
 
+    private Long busId;
+
     public DestinationInfoDto(DestinationInfo destinationInfo) {
         this.routeNumber = destinationInfo.getBus().getRouteNumber();
         this.routeDirection = destinationInfo.getBus().getRouteDirection();
         this.departureTime = destinationInfo.getBus().getDepartureTime();
         this.destination = destinationInfo.getDestination();
         this.arrivalTime = destinationInfo.getArrivalTime();
+        this.busId = destinationInfo.getBus().getId();
     }
 }
