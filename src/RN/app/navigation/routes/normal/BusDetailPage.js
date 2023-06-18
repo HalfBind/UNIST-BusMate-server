@@ -4,7 +4,7 @@ import {LinearBGView, ListEmptyElem} from '@UI/share';
 import {getMinuteLeft} from '@_utils/converters';
 import {isEmpty} from '@_utils/validation';
 import API from '@apis/apis';
-import {getW} from '@constants/appUnits';
+import {THICK_PADDING, getW} from '@constants/appUnits';
 import {initialBusDetail} from '@constants/dataConfig';
 import {FlatList_P} from '@platformPackage/gestureComponent';
 import {useRoute} from '@react-navigation/native';
@@ -84,7 +84,11 @@ function BusDetailPage() {
         }}
       />
       <HomeComp.AlarmListBtn
-        style={{position: 'fixed', right: getW(20), bottom: getW(20)}}
+        style={{
+          position: 'fixed',
+          right: THICK_PADDING + getW(20),
+          bottom: getW(20),
+        }}
       />
     </LinearBGView>
   );

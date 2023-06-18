@@ -2,6 +2,7 @@ import {Horizon, View_CenterModal} from '@components/templates/defaultComps';
 import {WINDOW_WIDTH, getW} from '@constants/appUnits';
 import {_useNavFunctions} from '@hooks/navigationHook';
 import {UserDataContext} from '@hooks/userDataContext';
+import {useMyToast} from '@platformPackage/Toast';
 import {TextInput_P} from '@platformPackage/gestureComponent';
 import COLORS from '@styles/colors';
 import font from '@styles/textStyle';
@@ -14,8 +15,10 @@ function RegisterPage() {
   const {_goBack} = _useNavFunctions();
 
   const {setUser} = useContext(UserDataContext);
+  const {showDefaultToast} = useMyToast();
   const setUserName = async () => {
     await setUser(newName);
+    showDefaultToast('ID를 등록했습니다');
     _goBack();
   };
   return (

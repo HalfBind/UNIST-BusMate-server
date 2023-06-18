@@ -1,5 +1,5 @@
 import React from 'react';
-import {IS_THICK, REAL_WIDTH, WINDOW_WIDTH} from '@constants/appUnits';
+import {THICK_PADDING} from '@constants/appUnits';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
   TransitionOptions,
@@ -23,7 +23,7 @@ function RootStackNavigator({splashOptions = {}}) {
     <Stack.Navigator
       screenOptions={{
         cardStyle: {
-          paddingHorizontal: IS_THICK ? (REAL_WIDTH - WINDOW_WIDTH) / 2 : 0,
+          paddingHorizontal: THICK_PADDING,
           backgroundColor: '#F9F9F9',
           flex: 1,
         },

@@ -7,6 +7,7 @@ import {BET_ENG_KOR, DAYS} from '@constants/dataConfig';
 import {COMMON_IC} from '@constants/imageMap';
 import {UserDataContext} from '@hooks/userDataContext';
 import {Image_local} from '@platformPackage/Image';
+import {useMyToast} from '@platformPackage/Toast';
 import {FlatList_P} from '@platformPackage/gestureComponent';
 import COLORS from '@styles/colors';
 import SHADOW from '@styles/shadow';
@@ -54,7 +55,7 @@ const AlarmComp = {
       <View style={{alignItems: 'flex-end', paddingRight: getW(18)}} />
     </Horizon>
   ),
-  Card: ({alarmId, days, busInfo, timeOffset = 10, style, onRemoveAlarm}) => {
+  Card: ({id, days, busInfo, timeOffset = 10, style, onRemoveAlarm}) => {
     const dayKeys = Object.keys(DAYS);
     const {routeNumber, routeDirection, departureTime} = busInfo;
     return (
@@ -76,7 +77,7 @@ const AlarmComp = {
             {days
               .sort((a, b) => dayKeys.indexOf(a) - dayKeys.indexOf(b))
               .map(dayEng => (
-                <DayTag dayEng={dayEng} />
+                <DayTag key={dayEng} dayEng={dayEng} />
               ))}
           </Horizon>
           <Horizon style={{alignItems: 'center', marginTop: getW(12)}}>
@@ -98,7 +99,7 @@ const AlarmComp = {
           </Text>
           <PressCallback
             onPress={() => {
-              onRemoveAlarm(alarmId);
+              onRemoveAlarm(id);
             }}>
             <Image_local
               source={COMMON_IC.trash}
@@ -113,6 +114,7 @@ const AlarmComp = {
 
 function AlarmListPage() {
   const {userName, inited} = useContext(UserDataContext);
+  const {showDefaultToast} = useMyToast();
   const [state, setState] = useState({
     reloadToggle: true,
     loadState: 'loading',
@@ -132,11 +134,14 @@ function AlarmListPage() {
         setState(prev => ({...prev, loadState: 'empty'}));
       }
     }
-  }, [userName, inited]);
+  }, [userName, inited, state.reloadToggle]);
 
   const removeAlarm = async alarmId => {
-    await API.deleteAlarm({alarmId});
-    setState(prev => ({...prev, reloadToggle: !prev.reloadToggle}));
+    const {status} = await API.deleteAlarm({alarmId});
+    if (status === 204) {
+      showDefaultToast('알림을 삭제 했습니다');
+      setState(prev => ({...prev, reloadToggle: !prev.reloadToggle}));
+    }
   };
 
   return (

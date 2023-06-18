@@ -74,7 +74,9 @@ export const AlarmComp = {
         ...style,
       }}>
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={[font.r12, {color: COLORS.main}]}>노선</Text>
+        <Text style={[font.r12, {color: COLORS.main, marginBottom: getW(12)}]}>
+          노선
+        </Text>
         <Text style={[font.b24, {color: COLORS.main29}]}>{routeNumber}</Text>
       </View>
       <View
@@ -87,12 +89,14 @@ export const AlarmComp = {
         }}
       />
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={[font.r12, {color: COLORS.main}]}>출발 시간</Text>
+        <Text style={[font.r12, {color: COLORS.main, marginBottom: getW(12)}]}>
+          출발 시간
+        </Text>
         <Text style={[font.b24, {color: COLORS.main29}]}>{departureTime}</Text>
       </View>
     </Horizon>
   ),
-  InputMinute: ({toggleDayUse, isDayUse, onTextChange}) => {
+  InputMinute: ({toggleDayUse, isDayUse, onTextChange, curValue}) => {
     return (
       <View
         style={{
@@ -105,6 +109,7 @@ export const AlarmComp = {
           <TextInput_P
             keyboardType="numeric"
             maxLength={2}
+            value={curValue}
             onChangeText={text => onTextChange(text)}
             style={[
               font.b32,

@@ -3,7 +3,7 @@ import {LinearBGView, ListEmptyElem} from '@UI/share';
 import {timeToNum} from '@_utils/converters';
 import {isEmpty} from '@_utils/validation';
 import API from '@apis/apis';
-import {getW} from '@constants/appUnits';
+import {THICK_PADDING, getW} from '@constants/appUnits';
 import {UserDataContext} from '@hooks/userDataContext';
 import {FlatList_P} from '@platformPackage/gestureComponent';
 import React, {useContext, useEffect, useState} from 'react';
@@ -56,7 +56,7 @@ function HomePage() {
             homeState={{dest, time, mode}}
           />
         }
-        contentContainerStyle={{paddingBottom: getW(50)}}
+        contentContainerStyle={{paddingBottom: getW(80)}}
         data={state.busList}
         renderItem={({item, index}) => {
           return (
@@ -71,7 +71,11 @@ function HomePage() {
         }
       />
       <HomeComp.AlarmListBtn
-        style={{position: 'fixed', right: getW(20), bottom: getW(20)}}
+        style={{
+          position: 'fixed',
+          right: THICK_PADDING + getW(20),
+          bottom: getW(20),
+        }}
       />
       <TimePickerModal
         visible={modalVisible}

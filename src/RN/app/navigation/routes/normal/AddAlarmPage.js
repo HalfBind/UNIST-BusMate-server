@@ -6,6 +6,7 @@ import {getW} from '@constants/appUnits';
 import {DAYS} from '@constants/dataConfig';
 import {_useNavFunctions} from '@hooks/navigationHook';
 import {UserDataContext} from '@hooks/userDataContext';
+import {useMyToast} from '@platformPackage/Toast';
 import {ScrollView_P} from '@platformPackage/gestureComponent';
 import {useRoute} from '@react-navigation/native';
 import COLORS from '@styles/colors';
@@ -22,8 +23,9 @@ function AddAlarmPage() {
   const {userName} = useContext(UserDataContext);
   const [controllState, setControllState] = useState({
     useDays: false,
-    minuteBefore: '',
+    timeOffset: '10',
   });
+  const {showDefaultToast} = useMyToast();
 
   const [daySelect, setDaySelect] = useState(
     Object.keys(DAYS).reduce((out, dayEng) => {
@@ -47,8 +49,13 @@ function AddAlarmPage() {
           days: Object.keys(daySelect).filter(
             dayKey => daySelect[dayKey].isSelected,
           ),
-          timeOffset: Number(controllState.minuteBefore),
+          timeOffset: !Number(controllState.timeOffset)
+            ? 10
+            : Number(controllState.timeOffset),
         });
+        if (res.status === 201) {
+          showDefaultToast('알림을 저장했습니다');
+        }
         _goBack();
       } else {
         _navigate('Register');
@@ -72,8 +79,9 @@ function AddAlarmPage() {
           }}
         />
         <AlarmComp.InputMinute
+          curValue={controllState.timeOffset}
           onTextChange={text => {
-            setControllState(prev => ({...prev, minuteBefore: text}));
+            setControllState(prev => ({...prev, timeOffset: text}));
           }}
           toggleDayUse={() =>
             setControllState(prev => ({...prev, useDays: !prev.useDays}))

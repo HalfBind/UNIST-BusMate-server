@@ -37,6 +37,7 @@ function HomeSetDest() {
           height: (1 / 2) * WINDOW_HEIGHT,
           width: (2 / 3) * WINDOW_WIDTH,
           backgroundColor: 'white',
+          borderRadius: getW(10),
         }}>
         <FlatList_P
           contentContainerStyle={{paddingVertical: getW(40)}}
@@ -50,6 +51,8 @@ function HomeSetDest() {
           end={{x: 0, y: 1}}
           colors={['white', 'transparent']}
           style={{
+            borderTopLeftRadius: getW(10),
+            borderTopRightRadius: getW(10),
             position: 'absolute',
             height: getW(50),
             top: 0,
@@ -63,6 +66,8 @@ function HomeSetDest() {
           colors={['white', 'transparent']}
           style={{
             position: 'absolute',
+            borderBottomLeftRadius: getW(10),
+            borderBottomRightRadius: getW(10),
             height: getW(50),
             bottom: 0,
             left: 0,

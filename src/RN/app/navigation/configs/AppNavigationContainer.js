@@ -26,9 +26,6 @@ function AppNavigationContainer({navContext}) {
             return 'Busmate';
           },
         }}
-        onReady={() => {
-          // console.log('nav ready!');
-        }}
         ref={_rootNavigationRef}
         theme={{
           ...DefaultTheme,

@@ -15,10 +15,10 @@ const reducer = (prevState, action) => {
         inited: true,
       };
     }
-    case 'SET_USER': {
+    case 'SET_USER_NAME': {
       return {
         ...prevState,
-        userNmae: action.userName,
+        userName: action.userName,
       };
     }
     case 'SET_DEST_QUERY': {
