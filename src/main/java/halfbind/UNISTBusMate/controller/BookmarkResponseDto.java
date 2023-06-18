@@ -9,11 +9,13 @@ import halfbind.UNISTBusMate.domain.Day;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class BookmarkResponseDto {
+    private Long id;
     private String userName;
     private List<Day> days;
     private BusDto busInfo;
 
     public BookmarkResponseDto(Bookmark bookmark) {
+        this.id = bookmark.getId();
         this.userName = bookmark.getUserName();
         this.days = bookmark.getDays();
         this.busInfo = new BusDto(bookmark.getBus());
