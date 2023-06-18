@@ -2,6 +2,7 @@ import {getAPMTime, getMinuteLeft} from '@_utils/converters';
 import {DoNothing} from '@_utils/handling';
 import {Horizon} from '@components/templates/defaultComps';
 import {getW} from '@constants/appUnits';
+import {BET_ENG_KOR, DEST_ENG_KOR} from '@constants/dataConfig';
 import {COMMON_IC} from '@constants/imageMap';
 import {Image_local} from '@platformPackage/Image';
 import COLORS from '@styles/colors';
@@ -65,7 +66,7 @@ export const HomeComp = {
                 <Text style={[font.eb10, {color: 'white'}]}>목적지</Text>
                 <Text
                   style={[font.eb16, {color: 'white', marginBottom: getW(12)}]}>
-                  {dest}
+                  {DEST_ENG_KOR[dest]}
                 </Text>
               </View>
               <Image_local
@@ -133,7 +134,8 @@ export const HomeComp = {
     );
   },
   BusInfo: ({busInfo, style}) => {
-    const {routeNumber, routeDirection, departureTime, arrivalTime} = busInfo;
+    const {routeNumber, routeDirection, departureTime, arrivalTime, busId} =
+      busInfo;
     return (
       <View style={[ST.busCont, style]}>
         <Horizon style={{justifyContent: 'space-between'}}>
@@ -148,7 +150,7 @@ export const HomeComp = {
                   marginTop: getW(4),
                 },
               ]}>
-              {routeDirection + '\n방면'}
+              {BET_ENG_KOR[routeDirection] + '\n방면'}
             </Text>
           </Horizon>
           <View style={{alignItems: 'flex-end'}}>
@@ -180,7 +182,7 @@ export const HomeComp = {
             horizon
             style={{alignItems: 'center'}}
             routeName={'AddAlarm'}
-            extraParam={{routeNumber}}>
+            extraParam={{routeNumber, busId, departureTime}}>
             <Image_local
               source={COMMON_IC.add_alarm}
               style={{
@@ -195,7 +197,7 @@ export const HomeComp = {
       </View>
     );
   },
-  AddAlarmBtn: ({style}) => {
+  AlarmListBtn: ({style}) => {
     return (
       <PressNavigate
         style={{
@@ -207,7 +209,7 @@ export const HomeComp = {
           backgroundColor: 'white',
           ...style,
         }}
-        routeName={'AddAlarm'}>
+        routeName={'AlarmList'}>
         <Image_local
           source={COMMON_IC.access_alarm}
           style={{width: getW(24), height: getW(24)}}

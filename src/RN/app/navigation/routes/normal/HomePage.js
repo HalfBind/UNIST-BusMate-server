@@ -70,7 +70,7 @@ function HomePage() {
           />
         }
       />
-      <HomeComp.AddAlarmBtn
+      <HomeComp.AlarmListBtn
         style={{position: 'fixed', right: getW(20), bottom: getW(20)}}
       />
       <TimePickerModal

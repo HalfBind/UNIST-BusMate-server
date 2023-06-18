@@ -1,14 +1,25 @@
 import {getTimeString} from '@_utils/converters';
+import {isExist} from '@_utils/validation';
 import {initialContext} from '@constants/dataConfig';
-import {createContext, useMemo, useReducer} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {createContext, useEffect, useMemo, useReducer} from 'react';
 
 const initialData = initialContext;
 
 const reducer = (prevState, action) => {
   switch (action.type) {
-    case 'SIGN_IN': {
-      console.log('try signin');
-      break;
+    case 'INIT': {
+      return {
+        ...prevState,
+        ...action.config,
+        inited: true,
+      };
+    }
+    case 'SET_USER': {
+      return {
+        ...prevState,
+        userNmae: action.userName,
+      };
     }
     case 'SET_DEST_QUERY': {
       return {
@@ -59,7 +70,26 @@ export function CreateUserDataContext(props) {
     refreshTime: () => {
       dispatch({type: 'REFRESH_TIME'});
     },
+    setUser: async userName => {
+      await AsyncStorage.setItem('USER_NAME', userName);
+      dispatch({type: 'SET_USER_NAME', userName});
+    },
+    init: config => {
+      dispatch({type: 'INIT', config});
+    },
   }));
+
+  useEffect(() => {
+    initUser();
+    async function initUser() {
+      const curUserName = await AsyncStorage.getItem('USER_NAME');
+      if (isExist(curUserName)) {
+        actions.init({userName: curUserName});
+      } else {
+        actions.init({});
+      }
+    }
+  }, []);
 
   return (
     <UserDataContext.Provider value={{...state, ...actions}}>

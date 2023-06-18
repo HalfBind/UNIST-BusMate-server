@@ -1,9 +1,9 @@
 import {View_CenterModal} from '@components/templates/defaultComps';
 import {WINDOW_HEIGHT, WINDOW_WIDTH, getW} from '@constants/appUnits';
 import {DEST_KOR_ENG} from '@constants/dataConfig';
+import {_useNavFunctions} from '@hooks/navigationHook';
 import {UserDataContext} from '@hooks/userDataContext';
 import {FlatList_P} from '@platformPackage/gestureComponent';
-import {useNavigation} from '@react-navigation/native';
 import font from '@styles/textStyle';
 import {PressCallback} from '@userInteraction/pressAction';
 import React, {useContext} from 'react';
@@ -25,10 +25,10 @@ const Selector = ({destKor, onSelect}) => (
 function HomeSetDest() {
   const destKorList = Object.keys(DEST_KOR_ENG);
   const {setDest} = useContext(UserDataContext);
-  const {goBack} = useNavigation();
+  const {_goBack} = _useNavFunctions();
   const onSelect = destKor => {
     setDest(DEST_KOR_ENG[destKor]);
-    goBack();
+    _goBack();
   };
   return (
     <View_CenterModal>

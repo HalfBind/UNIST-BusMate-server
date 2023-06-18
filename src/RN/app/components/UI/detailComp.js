@@ -1,6 +1,7 @@
 import {isExist} from '@_utils/validation';
 import {Horizon} from '@components/templates/defaultComps';
 import {getW} from '@constants/appUnits';
+import {BET_ENG_KOR, DEST_ENG_KOR} from '@constants/dataConfig';
 import {COMMON_IC} from '@constants/imageMap';
 import {Image_local} from '@platformPackage/Image';
 import COLORS from '@styles/colors';
@@ -18,7 +19,9 @@ const DestTag = ({name, style}) => (
       borderRadius: getW(4),
       ...style,
     }}>
-    <Text style={[font.eb12, {color: COLORS.gray32}]}>{name}</Text>
+    <Text style={[font.eb12, {color: COLORS.gray32}]}>
+      {DEST_ENG_KOR[name]}
+    </Text>
   </View>
 );
 
@@ -47,7 +50,7 @@ export const DetailComp = {
           {routeNumber + ' 시간표'}
         </Text>
         <Text style={[font.b12, {color: COLORS.gray48, marginTop: getW(6)}]}>
-          {routeDirection + ' 방면'}
+          {BET_ENG_KOR[routeDirection] + ' 방면'}
         </Text>
       </View>
       <View style={{flex: 1}} />

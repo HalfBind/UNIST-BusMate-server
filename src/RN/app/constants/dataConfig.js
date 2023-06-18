@@ -17,6 +17,16 @@ export const initialBusDetail = {
   destinations: [],
 };
 
+export const DAYS = {
+  MON: '월요일',
+  TUE: '화요일',
+  WED: '수요일',
+  THU: '목요일',
+  FRI: '금요일',
+  SAT: '토요일',
+  SUN: '일요일',
+};
+
 export const DEST_ENG_KOR = {
   ULSAN_UNIVERSITY: '울산대학교',
   SINBOK_ROTARY: '신복로터리',
@@ -45,7 +55,7 @@ export const BET_KOR_ENG = {
   웰컴센터: 'WELCOME_CENTER',
   태화강역: 'TAEWHA_RIVER_STATION',
   꽃바위: 'KKOTBAWI',
-  덕히차고지: 'DEOKHA_GARAGE',
+  덕하차고지: 'DEOKHA_GARAGE',
   농소차고지: 'NONGSO_GARAGE',
   유니스트: 'UNIST',
   태화강: 'TAEWHA_RIVER',
@@ -57,7 +67,7 @@ export const BET_ENG_KOR = {
   WELCOME_CENTER: '웰컴센터',
   TAEWHA_RIVER_STATION: '태화강역',
   KKOTBAWI: '꽃바위',
-  DEOKHA_GARAGE: '덕히차고지',
+  DEOKHA_GARAGE: '덕하차고지',
   NONGSO_GARAGE: '농소차고지',
   UNIST: '유니스트',
   TAEWHA_RIVER: '태화강',
