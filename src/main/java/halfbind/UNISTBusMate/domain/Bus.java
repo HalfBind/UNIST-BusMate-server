@@ -11,12 +11,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Document(collection = "buses")
 @NoArgsConstructor
 public class Bus {
     @Id
+    @Getter
     private Long id;
 
     private String routeNumber;
