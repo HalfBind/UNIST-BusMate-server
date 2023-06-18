@@ -49,15 +49,26 @@ export function getDateString(dateObj, option = 'default') {
 }
 
 export function getTimeString(dateObj) {
-  let hour = dateObj.getHours();
+  let hour = String(dateObj.getHours());
   if (hour.length === 1) {
     hour = '0' + hour;
   }
-  let minutes = dateObj.getMinutes();
+  let minutes = String(dateObj.getMinutes());
   if (minutes.length === 1) {
     minutes = '0' + minutes;
   }
   return `${hour}:${minutes}`;
+}
+
+export function getAPMTime(timeString) {
+  let [hour, minute] = timeString.split(':');
+  let pref = '오전';
+  if (Number(hour) > 12) {
+    hour = String(Number(hour) - 12);
+    pref = '오후';
+  }
+
+  return pref + ' ' + hour + ':' + minute;
 }
 
 export function getMinuteLeft(targetMinute) {

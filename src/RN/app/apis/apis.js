@@ -21,6 +21,7 @@ const API_ORIGIN = {
 
 const API = {
   getBusList: async ({dest, mode, time}) => {
+    console.log('time : ', time);
     const add =
       mode === 'leave'
         ? `${dest}?departureTime=${time}`
@@ -32,7 +33,10 @@ const API = {
       });
       return res;
     } catch (error) {
-      console.log('error from getBusList', error);
+      console.log('error from getBusList', error.response.status, error);
+      if (error.response.status === 404) {
+        return {data: []};
+      }
     }
   },
 };

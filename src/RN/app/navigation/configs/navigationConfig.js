@@ -2,7 +2,15 @@ const prefix = '/UNIST-BusMate/';
 
 export const navigationConfig = {
   RootStackNavigator: {
-    child: ['Home', 'AddAlarm', 'AlarmList', 'BusDetail', 'Register'],
+    child: [
+      'Home',
+      'AddAlarm',
+      'AlarmList',
+      'BusDetail',
+      'Register',
+      'HomeSetTime',
+      'HomeSetDest',
+    ],
     paths: {},
   },
   Home: {
