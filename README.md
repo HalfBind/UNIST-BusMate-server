@@ -1,4 +1,19 @@
 # UNIST Bus Mate Server Application
+## How to use
+
+1. On the main screen, you can easily access the search button, destination-based search modal, and quickly view the fastest bus information at a glance.
+
+2. By utilizing the destination-based search feature, you can enter your desired destination and easily access a list of buses that will take you there.
+
+3. You can also perform searches based on your preferred departure time. Simply input your desired departure time, and the app will provide you with bus options that align with your schedule.
+
+4. If you have a preferred bus that you frequently use, you can set up weekly notification reminders through the app. This way, you will receive timely alerts about the bus schedule and any relevant updates for your convenience.
+
+5. To utilize this feature, you can create a personal account and log in using your unique ID. Once logged in, you will have access to set up weekly notification reminders for your preferred bus and enjoy the convenience of timely updates and alerts.
+
+6. You can also customize the days of the week on which you would like to receive the notifications. When setting up the notification reminders, you will have the option to select specific days that are most convenient for you. This way, you can ensure that you receive alerts on the days that align with your regular bus travel schedule.
+
+7. In the notification list screen, you can view and manage the notifications that you have registered. This screen will display a list of your active notifications, allowing you to easily review them. If you wish to remove any specific notification, you can select it from the list and choose the option to delete it. This gives you control over managing your notifications based on your preferences and needs.
 ## Features
 
 ### Bus
