@@ -92,7 +92,7 @@
                 </configuration>
             </plugin>
        
-            <!-- <plugin>
+            <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                     <executions>
                         <execution>
@@ -110,7 +110,7 @@
                             </configuration>
                         </execution>
                     </executions>
-            </plugin>  -->
+            </plugin> 
         </plugins>
     </build>
 </project>
