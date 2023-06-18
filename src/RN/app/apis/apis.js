@@ -39,6 +39,20 @@ const API = {
       }
     }
   },
+  getTimeTable: async ({routeNumber, routeDirection}) => {
+    try {
+      const res = await axios({
+        url: BUS + routeNumber + '/' + routeDirection,
+        method: 'get',
+      });
+      return res;
+    } catch (error) {
+      console.log('error from get timetable', error);
+      if (error.response.status === 404) {
+        return {data: []};
+      }
+    }
+  },
 };
 
 export default API;

@@ -20,9 +20,12 @@ const font = {
   extraBold,
   eb8: mf(extraBold, 8),
   eb10: mf(extraBold, 10),
+  eb12: mf(extraBold, 12),
   eb16: mf(extraBold, 16),
+  b10: mf(bold, 10),
   b12: mf(bold, 12),
   b16: mf(bold, 16),
+  b20: mf(bold, 20),
   b36: mf(bold, 36),
   b8: mf(bold, 8),
 

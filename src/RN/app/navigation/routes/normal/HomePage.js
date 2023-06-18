@@ -1,15 +1,12 @@
 import {HomeComp} from '@UI/homeComp';
+import {LinearBGView, ListEmptyElem} from '@UI/share';
 import {timeToNum} from '@_utils/converters';
 import {isEmpty} from '@_utils/validation';
 import API from '@apis/apis';
-import {WINDOW_HEIGHT, getW} from '@constants/appUnits';
+import {getW} from '@constants/appUnits';
 import {UserDataContext} from '@hooks/userDataContext';
 import {FlatList_P} from '@platformPackage/gestureComponent';
-import COLORS from '@styles/colors';
-import font from '@styles/textStyle';
 import React, {useContext, useEffect, useState} from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import {TimePickerModal} from 'react-native-paper-dates';
 
 //todo : empty page
@@ -46,11 +43,7 @@ function HomePage() {
   }, [dest, time, mode]);
 
   return (
-    <LinearGradient
-      start={{x: 0, y: 0}}
-      end={{x: 1, y: 1}}
-      colors={['rgba(250, 250, 250, 1)', 'rgba(239, 246, 255, 1)']}
-      style={{flex: 1, backgroundColor: 'white'}}>
+    <LinearBGView>
       <FlatList_P
         stickyHeaderIndices={[0]}
         ListHeaderComponent={
@@ -71,20 +64,10 @@ function HomePage() {
           );
         }}
         ListEmptyComponent={
-          <View
-            style={{
-              height: WINDOW_HEIGHT / 2,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            {state.loadState === 'empty' ? (
-              <Text style={[font.b16, {color: '#868686'}]}>
-                조건에 맞는 버스가 없습니다
-              </Text>
-            ) : (
-              <ActivityIndicator size={'large'} color={COLORS.main} />
-            )}
-          </View>
+          <ListEmptyElem
+            decscription={'조건에 맞는 버스가 없습니다'}
+            isLoading={state.loadState === 'loading'}
+          />
         }
       />
       <HomeComp.AddAlarmBtn
@@ -95,7 +78,7 @@ function HomePage() {
         onDismiss={() => setModalVisible(false)}
         onConfirm={({hours, minutes}) => {}}
       />
-    </LinearGradient>
+    </LinearBGView>
   );
 }
 

@@ -51,6 +51,14 @@ const SHADOW = StyleSheet.create({
     },
     shadowRadius: getW(8),
   },
+  xy02p1r6: {
+    shadowColor: COLORS.black10P,
+    shadowOffset: {
+      width: 0,
+      height: getW(2),
+    },
+    shadowRadius: getW(6),
+  },
 });
 
 export default SHADOW;

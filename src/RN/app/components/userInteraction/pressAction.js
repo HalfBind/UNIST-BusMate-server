@@ -122,7 +122,7 @@ export const OpenBottomModal = ({
 };
 
 export const PressGoBack = ({style, children, ripple, onPress = () => {}}) => {
-  const {goBack} = useNavigation();
+  const {goBack, canGoBack} = useNavigation();
   const [disabled, setDisabled] = useState(false);
 
   return (

@@ -165,7 +165,7 @@ export const HomeComp = {
             horizon
             style={{alignItems: 'center'}}
             routeName={'BusDetail'}
-            extraParam={{routeNumber}}>
+            extraParam={{routeNumber, routeDirection}}>
             <Image_local
               source={COMMON_IC.time_table}
               style={{
