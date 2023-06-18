@@ -37,9 +37,9 @@ const API = {
       return res;
     } catch (error) {
       console.log('error from getBusList', error.response.status, error);
-      if (error.response.status === 404) {
-        return {data: []};
-      }
+      return {data: []};
+      // if (error.response.status === 404) {
+      // }
     }
   },
   getTimeTable: async ({routeNumber, routeDirection}) => {

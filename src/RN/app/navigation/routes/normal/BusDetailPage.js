@@ -50,7 +50,11 @@ function BusDetailPage() {
         setState({loadState: 'done', ...newState});
       }
     }
-    loadBusList();
+    try {
+      loadBusList();
+    } catch (error) {
+      console.log('error from load bus List');
+    }
   }, [routeNumber]);
 
   return (
