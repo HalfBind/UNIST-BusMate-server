@@ -1,7 +1,9 @@
 import {getTimeString} from '@_utils/converters';
+import {IS_SPRING} from 'app/appConfig';
 import axios from 'axios';
-
-const BASE = 'http://localhost:8080/UNIST-BusMate/api/';
+const BASE = IS_SPRING
+  ? 'http://localhost:8080/UNIST-BusMate/api/'
+  : 'http://localhost:8080/api/';
 const DEST = BASE + 'destinationInfos/';
 const BUS = BASE + 'buses/';
 const NOTI = BASE + 'bookmarks/';
