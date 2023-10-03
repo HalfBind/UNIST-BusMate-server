@@ -1,4 +1,8 @@
-# UNIST Bus Mate Server Application
+# 🚌 UNIST 버스메이트
+
+![Alt text](images/main.png)
+UNIST 학내 구성원들의 버스 이용 어려움을 해소하기 위해, 기존의 복잡한 울산 버스정보를 간편히 이용할 수 있는 버스 유틸리티 서비스입니다.
+
 ## Features
 
 ### Bus
@@ -47,7 +51,6 @@ This feature provides several functionalities for bus bookmarking.
 
   Retrieves bus information based on the route number, direction, and departure time.
 
-
 ### Destination Info
 
 - `GET /destinationInfo/{destination}`
@@ -66,7 +69,6 @@ This feature provides several functionalities for bus bookmarking.
 
   Retrieves bus arrival information based on the destination, desired arrival time, and departure time.
 
-
 ### Bookmark
 
 - `GET /bookmarks/{userName}`
@@ -80,7 +82,6 @@ This feature provides several functionalities for bus bookmarking.
 - `DELETE /bookmarks/{bookmarkId}`
 
   Deletes the specified bookmark.
-
 
 ## Examples of API usage (with curl)
 
@@ -97,9 +98,9 @@ Expected output:
 ```bash
 [
 		{
-				"routeNumber":"133",
-				"routeDirection":"KKOTBAWI",
-				"departureTime":"05:00",
+				"routeNumber": "133",
+				"routeDirection": "KKOTBAWI",
+				"departureTime": "05:00",
 				"destinations":["GUYEONG_RI", "ULSAN_TERMINAL"]
 		}, ...
 ]
@@ -116,9 +117,9 @@ Expected output:
 ```bash
 [
 		{
-				"routeNumber":"133",
-				"routeDirection":"KKOTBAWI",
-				"departureTime":"12:15",
+				"routeNumber": "133",
+				"routeDirection": "KKOTBAWI",
+				"departureTime": "12:15",
 				"destinations":["GUYEONG_RI", "ULSAN_TERMINAL"]
 		}, ...
 ]
@@ -135,9 +136,9 @@ Expected output:
 ```bash
 [
 		{
-				"routeNumber":"133",
-				"routeDirection":"KKOTBAWI",
-				"departureTime":"05:00",
+				"routeNumber": "133",
+				"routeDirection": "KKOTBAWI",
+				"departureTime": "05:00",
 				"destinations":["GUYEONG_RI", "ULSAN_TERMINAL"]
 		}, ...
 ]
@@ -154,9 +155,9 @@ Expected output:
 ```bash
 [
 		{
-				"routeNumber":"133",
-				"routeDirection":"KKOTBAWI",
-				"departureTime":"12:15",
+				"routeNumber": "133",
+				"routeDirection": "KKOTBAWI",
+				"departureTime": "12:15",
 				"destinations":["GUYEONG_RI", "ULSAN_TERMINAL"]
 		}, ...
 ]
@@ -175,11 +176,11 @@ Expected output:
 ```bash
 [
     {
-        "routeNumber":"133",
-        "routeDirection":"KKOTBAWI",
-        "departureTime":"05:00",
-        "destination":"GUYEONG_RI",
-        "arrivalTime":"05:10"
+        "routeNumber": "133",
+        "routeDirection": "KKOTBAWI",
+        "departureTime": "05:00",
+        "destination": "GUYEONG_RI",
+        "arrivalTime": "05:10"
     }, ...
 ]
 ```
@@ -195,11 +196,11 @@ Expected output:
 ```bash
 [
     {
-        "routeNumber":"133",
-        "routeDirection":"KKOTBAWI",
-        "departureTime":"12:15",
-        "destination":"GUYEONG_RI",
-        "arrivalTime":"12:25"
+        "routeNumber": "133",
+        "routeDirection": "KKOTBAWI",
+        "departureTime": "12:15",
+        "destination": "GUYEONG_RI",
+        "arrivalTime": "12:25"
     }, ...
 ]
 ```
@@ -215,11 +216,11 @@ Expected output:
 ```bash
 [
     {
-        "routeNumber":"133",
-        "routeDirection":"KKOTBAWI",
-        "departureTime":"05:00",
-        "destination":"GUYEONG_RI",
-        "arrivalTime":"05:10"
+        "routeNumber": "133",
+        "routeDirection": "KKOTBAWI",
+        "departureTime": "05:00",
+        "destination": "GUYEONG_RI",
+        "arrivalTime": "05:10"
     }, ...
 ]
 ```
@@ -235,18 +236,18 @@ Expected output:
 ```bash
 [
     {
-        "routeNumber":"733",
-        "routeDirection":"DEOKHA_GARAGE",
-        "departureTime":"12:00",
-        "destination":"GUYEONG_RI",
-        "arrivalTime":"12:10"
-    }, 
-		{
-        "routeNumber":"337",
-        "routeDirection":"TAEWHA_RIVER",
-        "departureTime":"12:00",
-        "destination":"GUYEONG_RI",
-        "arrivalTime":"12:10"
+        "routeNumber": "733",
+        "routeDirection": "DEOKHA_GARAGE",
+        "departureTime": "12:00",
+        "destination": "GUYEONG_RI",
+        "arrivalTime": "12:10"
+    },
+    {
+        "routeNumber": "337",
+        "routeDirection": "TAEWHA_RIVER",
+        "departureTime": "12:00",
+        "destination": "GUYEONG_RI",
+        "arrivalTime": "12:10"
     }
 ]
 ```
@@ -263,16 +264,20 @@ Expected output: (If the target bookmark exists. i. e. After run example of POST
 
 ```bash
 [
-	{
-    "userName":"Gibeom",
-    "days":["SUN"],
-    "busInfo": {
-        "routeNumber":"733",
-        "routeDirection":"DEOKHA_GARAGE",
-        "departureTime":"19:30",
-        "destinations":["GUYEONG_RI","ULSAN_UNIVERSITY","SINBOK_ROTARY","SEONGNAM","SAMSAN"]
+    {
+        "userName": "Gibeom",
+        "days":["SUN"],
+        "busInfo": {
+            "routeNumber": "733",
+            "routeDirection": "DEOKHA_GARAGE",
+            "departureTime": "19:30",
+            "destinations": [
+                "GUYEONG_RI",   "ULSAN_UNIVERSITY","SINBOK_ROTARY",
+                "SEONGNAM",
+                "SAMSAN"
+            ]
+        }
     }
-}
 ]
 ```
 
@@ -290,15 +295,22 @@ Expected output:
 
 ```bash
 {
-    "userName":"Gibeom",
+    "userName": "Gibeom",
     "days":["SUN"],
     "busInfo": {
-        "routeNumber":"733",
-        "routeDirection":"DEOKHA_GARAGE",
-        "departureTime":"19:30",
-        "destinations":["GUYEONG_RI","ULSAN_UNIVERSITY","SINBOK_ROTARY","SEONGNAM","SAMSAN"]
+        "routeNumber": "733",
+        "routeDirection": "DEOKHA_GARAGE",
+        "departureTime": "19:30",
+        "destinations": [
+            "GUYEONG_RI",
+            "ULSAN_UNIVERSITY",
+            "SINBOK_ROTARY",
+            "SEONGNAM",
+            "SAMSAN"
+        ]
     }
 }
+
 ```
 
 - `DELETE /bookmarks/{bookmarkId}`
