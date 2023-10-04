@@ -135,12 +135,12 @@ Expected output:
 
 ```bash
 [
-		{
-				"routeNumber": "133",
-				"routeDirection": "KKOTBAWI",
-				"departureTime": "05:00",
-				"destinations":["GUYEONG_RI", "ULSAN_TERMINAL"]
-		}, ...
+  {
+    "routeNumber": "133",
+    "routeDirection": "KKOTBAWI",
+    "departureTime": "05:00",
+    "destinations":["GUYEONG_RI", "ULSAN_TERMINAL"]
+  }, ...
 ]
 ```
 
@@ -154,12 +154,12 @@ Expected output:
 
 ```bash
 [
-		{
-				"routeNumber": "133",
-				"routeDirection": "KKOTBAWI",
-				"departureTime": "12:15",
-				"destinations":["GUYEONG_RI", "ULSAN_TERMINAL"]
-		}, ...
+  {
+    "routeNumber": "133",
+    "routeDirection": "KKOTBAWI",
+    "departureTime": "12:15",
+    "destinations":["GUYEONG_RI", "ULSAN_TERMINAL"]
+  }, ...
 ]
 ```
 
@@ -175,13 +175,13 @@ Expected output:
 
 ```bash
 [
-    {
-        "routeNumber": "133",
-        "routeDirection": "KKOTBAWI",
-        "departureTime": "05:00",
-        "destination": "GUYEONG_RI",
-        "arrivalTime": "05:10"
-    }, ...
+  {
+    "routeNumber": "133",
+    "routeDirection": "KKOTBAWI",
+    "departureTime": "05:00",
+    "destination": "GUYEONG_RI",
+    "arrivalTime": "05:10"
+  }, ...
 ]
 ```
 
@@ -195,13 +195,13 @@ Expected output:
 
 ```bash
 [
-    {
-        "routeNumber": "133",
-        "routeDirection": "KKOTBAWI",
-        "departureTime": "12:15",
-        "destination": "GUYEONG_RI",
-        "arrivalTime": "12:25"
-    }, ...
+  {
+    "routeNumber": "133",
+    "routeDirection": "KKOTBAWI",
+    "departureTime": "12:15",
+    "destination": "GUYEONG_RI",
+    "arrivalTime": "12:25"
+  }, ...
 ]
 ```
 
@@ -215,13 +215,13 @@ Expected output:
 
 ```bash
 [
-    {
-        "routeNumber": "133",
-        "routeDirection": "KKOTBAWI",
-        "departureTime": "05:00",
-        "destination": "GUYEONG_RI",
-        "arrivalTime": "05:10"
-    }, ...
+  {
+    "routeNumber": "133",
+    "routeDirection": "KKOTBAWI",
+    "departureTime": "05:00",
+    "destination": "GUYEONG_RI",
+    "arrivalTime": "05:10"
+  }, ...
 ]
 ```
 
@@ -235,20 +235,20 @@ Expected output:
 
 ```bash
 [
-    {
-        "routeNumber": "733",
-        "routeDirection": "DEOKHA_GARAGE",
-        "departureTime": "12:00",
-        "destination": "GUYEONG_RI",
-        "arrivalTime": "12:10"
-    },
-    {
-        "routeNumber": "337",
-        "routeDirection": "TAEWHA_RIVER",
-        "departureTime": "12:00",
-        "destination": "GUYEONG_RI",
-        "arrivalTime": "12:10"
-    }
+  {
+    "routeNumber": "733",
+    "routeDirection": "DEOKHA_GARAGE",
+    "departureTime": "12:00",
+    "destination": "GUYEONG_RI",
+    "arrivalTime": "12:10"
+  },
+  {
+    "routeNumber": "337",
+    "routeDirection": "TAEWHA_RIVER",
+    "departureTime": "12:00",
+    "destination": "GUYEONG_RI",
+    "arrivalTime": "12:10"
+  }
 ]
 ```
 
@@ -264,20 +264,20 @@ Expected output: (If the target bookmark exists. i. e. After run example of POST
 
 ```bash
 [
-    {
-        "userName": "Gibeom",
-        "days":["SUN"],
-        "busInfo": {
-            "routeNumber": "733",
-            "routeDirection": "DEOKHA_GARAGE",
-            "departureTime": "19:30",
-            "destinations": [
-                "GUYEONG_RI",   "ULSAN_UNIVERSITY","SINBOK_ROTARY",
-                "SEONGNAM",
-                "SAMSAN"
-            ]
-        }
+  {
+    "userName": "Gibeom",
+    "days":["SUN"],
+    "busInfo": {
+      "routeNumber": "733",
+      "routeDirection": "DEOKHA_GARAGE",
+      "departureTime": "19:30",
+      "destinations": [
+        "GUYEONG_RI",   "ULSAN_UNIVERSITY","SINBOK_ROTARY",
+        "SEONGNAM",
+        "SAMSAN"
+      ]
     }
+  }
 ]
 ```
 
@@ -295,20 +295,20 @@ Expected output:
 
 ```bash
 {
-    "userName": "Gibeom",
-    "days":["SUN"],
-    "busInfo": {
-        "routeNumber": "733",
-        "routeDirection": "DEOKHA_GARAGE",
-        "departureTime": "19:30",
-        "destinations": [
-            "GUYEONG_RI",
-            "ULSAN_UNIVERSITY",
-            "SINBOK_ROTARY",
-            "SEONGNAM",
-            "SAMSAN"
-        ]
-    }
+  "userName": "Gibeom",
+  "days":["SUN"],
+  "busInfo": {
+    "routeNumber": "733",
+    "routeDirection": "DEOKHA_GARAGE",
+    "departureTime": "19:30",
+    "destinations": [
+      "GUYEONG_RI",
+      "ULSAN_UNIVERSITY",
+      "SINBOK_ROTARY",
+      "SEONGNAM",
+      "SAMSAN"
+    ]
+  }
 }
 
 ```
